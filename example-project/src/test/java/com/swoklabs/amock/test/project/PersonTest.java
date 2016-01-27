@@ -1,5 +1,6 @@
 package com.swoklabs.amock.test.project;
 
+import com.swoklabs.amock.AmockInit;
 import com.swoklabs.amock.handler.MockHandler;
 import com.swoklabs.amock.model.MockContainer;
 import com.swoklabs.amock.test.project.classes.Person;
@@ -23,7 +24,7 @@ public class PersonTest {
 
     @Before
     public void setup(){
-
+        //new AmockInit();
     }
 
     @After

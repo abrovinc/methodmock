@@ -18,10 +18,12 @@ public class MockHandler {
     };
 
     public void registerMockContainer(final MockContainer mockContainer){
+        System.out.println("Adding to mock");
         mockContainers.get().add(mockContainer);
     }
 
     public Object handleMockCall(final ProceedingJoinPoint proceedingJoinPoint, final String methodId) throws Throwable {
+        System.out.println("Handling call");
         Object returnObj = null;
         if (mockContainers.get().size() > 0){
             return proceedingJoinPoint.proceed();

@@ -1,0 +1,8 @@
+<aspectj>
+    <aspects>
+        <aspect name="com.swoklabs.amock.aspect.MockInterceptor"/>
+    </aspects>
+    <weaver options="-verbose -showWeaveInfo">
+        <exclude within="Simple"/>
+    </weaver>
+</aspectj>
