@@ -72,5 +72,6 @@
     <modules>
         <module>model</module>
         <module>amock</module>
+        <module>example-project</module>
     </modules>
 </project>
