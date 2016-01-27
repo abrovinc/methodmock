@@ -10,24 +10,22 @@ import java.util.LinkedList;
  * Created by Steve on 2016-01-27.
  */
 public class MockHandler {
-    private ThreadLocal<Deque<MockContainer>> mockContainers = new ThreadLocal<Deque<MockContainer>>() {
+    private static InheritableThreadLocal<Deque<MockContainer>> mockContainers = new InheritableThreadLocal<Deque<MockContainer>>() {
         @Override
         protected Deque<MockContainer> initialValue() {
             return new LinkedList<>();
         }
     };
 
-    public void registerMockContainer(final MockContainer mockContainer){
-        System.out.println("Adding to mock");
+    public static void registerMockContainer(final MockContainer mockContainer){
         mockContainers.get().add(mockContainer);
     }
 
     public Object handleMockCall(final ProceedingJoinPoint proceedingJoinPoint, final String methodId) throws Throwable {
-        System.out.println("Handling call");
         Object returnObj = null;
-        if (mockContainers.get().size() > 0){
+        if (mockContainers.get().size() <= 0){
             return proceedingJoinPoint.proceed();
         }
-        return returnObj;
+        return mockContainers.get().pop().getMockResponse();
     }
 }

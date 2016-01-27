@@ -33,24 +33,27 @@ public class PersonTest {
     }
 
     @Test
-    public void testDbException(){
-        try {
-            personController.getAndPrintPerson("abc");
-        } catch (ConnectException e) {
-            assertEquals("Could not connect and get",e.getMessage());
-        }
-    }
-
-    @Test
     public void testMockedDbCall(){
-        final Person mockPerson = new Person("","","abc");
+        final PersonView personView1 = new PersonView();
+        final PersonController personController1 = new PersonController(personView1);
+        final Person mockPerson = new Person("Steve","Widinghoff","abc");
         final MockContainer mockContainer = new MockContainer("123", mockPerson);
-        MockHandler mockHandler = new MockHandler();
-        mockHandler.registerMockContainer(mockContainer);
+        MockHandler.registerMockContainer(mockContainer);
         try {
-            personController.getAndPrintPerson("abc");
+            personController1.getAndPrintPerson("abc");
         } catch (ConnectException e) {
             fail("Should not throw exception");
         }
     }
+
+    @Test
+    public void testDbException(){
+        try {
+            personController.getAndPrintPerson("abc");
+        } catch (ConnectException e) {
+            System.out.println("Exception is thrown : "+e.getMessage());
+            assertEquals("Could not connect and get",e.getMessage());
+        }
+    }
+
 }
