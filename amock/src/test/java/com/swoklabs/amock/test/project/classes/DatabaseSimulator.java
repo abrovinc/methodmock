@@ -1,5 +1,7 @@
 package com.swoklabs.amock.test.project.classes;
 
+import com.swoklabs.amock.annotations.MockInTest;
+
 import java.net.ConnectException;
 
 /**
@@ -7,10 +9,12 @@ import java.net.ConnectException;
  */
 public class DatabaseSimulator {
 
+    @MockInTest(methodId = "123")
     public Person getPersonFromDatabase(String personId) throws ConnectException {
         throw new ConnectException("Could not connect and get");
     }
 
+    @MockInTest(methodId = "1233")
     public void savePersonFromDatabase(String personId) throws ConnectException {
         throw new ConnectException("Could not connect and not save");
     }

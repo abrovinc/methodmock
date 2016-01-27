@@ -6,6 +6,6 @@ package com.swoklabs.amock.test.project.classes;
 public class PersonView {
 
     public void printPerson(Person person){
-        System.out.println("Person : "+person.toString());
+        System.out.println("Person : ");
     }
 }

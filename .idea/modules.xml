@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/amock/amock.iml" filepath="$PROJECT_DIR$/amock/amock.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/amock.swoklabs.com.iml" filepath="$PROJECT_DIR$/.idea/amock.swoklabs.com.iml" />
+      <module fileurl="file://$PROJECT_DIR$/model/model.iml" filepath="$PROJECT_DIR$/model/model.iml" />
     </modules>
   </component>
 </project>
