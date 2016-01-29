@@ -1,7 +1,9 @@
 package com.swoklabs.amock.test.project;
 
+import com.swoklabs.amock.AmockInit;
 import com.swoklabs.amock.handler.MockHandler;
 import com.swoklabs.amock.model.MockContainer;
+import com.swoklabs.amock.test.project.classes.Person;
 import com.swoklabs.amock.test.project.classes.PersonController;
 import com.swoklabs.amock.test.project.classes.PersonView;
 import org.junit.After;
@@ -19,10 +21,9 @@ import static org.junit.Assert.fail;
 public class PersonTest {
     private final PersonView personView = new PersonView();
     private final PersonController personController = new PersonController(personView);
-
     @Before
     public void setup(){
-
+        new AmockInit();
     }
 
     @After
@@ -41,10 +42,10 @@ public class PersonTest {
 
     @Test
     public void testMockedDbCall(){
-        final String returnString = "";
-        final MockContainer mockContainer = new MockContainer("123", returnString);
-        MockHandler mockHandler = new MockHandler();
-        mockHandler.registerMockContainer(mockContainer);
+
+        final Person mockPerson = new Person("Steve","Widisnghoff","abc");
+        final MockContainer mockContainer = new MockContainer("123", mockPerson);
+        MockHandler.registerMockContainer(mockContainer);
         try {
             personController.getAndPrintPerson("abc");
         } catch (ConnectException e) {
