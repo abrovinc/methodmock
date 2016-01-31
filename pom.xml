@@ -7,6 +7,16 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Amock-parent</name>
+
+    <developers>
+        <developer>
+            <name>Steve Widinghoff</name>
+            <organization>swoklabs.com</organization>
+            <email>steve@swoklabs.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
