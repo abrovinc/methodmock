@@ -1,6 +1,6 @@
 package com.swoklabs.amock.test.project;
 
-import com.swoklabs.amock.AmockInit;
+import com.swoklabs.amock.LoadJavaAgent;
 import com.swoklabs.amock.handler.MockHandler;
 import com.swoklabs.amock.model.MockContainer;
 import com.swoklabs.amock.test.project.classes.Person;
@@ -18,12 +18,11 @@ import static org.junit.Assert.fail;
 /**
  * Created by Steve on 2016-01-27.
  */
-public class PersonTest {
+public class PersonTest extends LoadJavaAgent {
     private final PersonView personView = new PersonView();
     private final PersonController personController = new PersonController(personView);
     @Before
     public void setup(){
-        new AmockInit();
     }
 
     @After
