@@ -7,7 +7,6 @@ import com.sun.tools.attach.VirtualMachine;
 
 import java.io.*;
 import java.lang.management.ManagementFactory;
-import java.nio.file.Files;
 
 /**
  * Created by Steve on 2016-01-27.
@@ -16,13 +15,12 @@ public class AmockInit {
     public AmockInit() {
 
         try {
-            System.out.println("Loading 123");
             VirtualMachine vm = VirtualMachine.attach(getCurrentPID());
-            final String totalPath = copyAgentToTempFolder();
-            System.out.println("total Path : "+totalPath);
+            final String totalPath = copyAgentToTempFolder().replace("\\","/");
+            final File agentFile = new File(totalPath);
+            agentFile.deleteOnExit();
             vm.loadAgent(totalPath);
             vm.detach();
-            System.out.println("Detaching");
         } catch (AgentLoadException | AgentInitializationException | IOException | AttachNotSupportedException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -31,26 +29,36 @@ public class AmockInit {
 
     }
     static public String copyAgentToTempFolder() throws Exception {
-        String resourceName = "/aspectjweaver-1.8.8.jar";
-        final String tempDirectoryPath = Files.createTempDirectory("agent").toString();
-        InputStream stream = null;
-        OutputStream resStreamOut = null;
-        try {
-            stream = AmockInit.class.getResourceAsStream(resourceName);
-            if(stream == null) {
-                throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
+        final String resourceName = "/aspectjweaver-1.8.8.jar";
+        final String tempDirBase = System.getProperty("java.io.tmpdir");
+        final String agentFolder = "agentfolder";
+        final String tempDirectoryPath = tempDirBase+agentFolder;
+        final File tempDir = new File(tempDirectoryPath);
+        if(!tempDir.exists()){
+            tempDir.mkdir();
+        }
+        final File checkIfJarExists = new File(tempDirectoryPath+resourceName);
+        checkIfJarExists.deleteOnExit();
+        if(!checkIfJarExists.exists()) {
+            InputStream stream = null;
+            OutputStream resStreamOut = null;
+            try {
+                stream = AmockInit.class.getResourceAsStream(resourceName);
+                if (stream == null) {
+                    throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
+                }
+                int readBytes;
+                byte[] buffer = new byte[4096];
+                resStreamOut = new FileOutputStream(tempDirectoryPath + resourceName);
+                while ((readBytes = stream.read(buffer)) > 0) {
+                    resStreamOut.write(buffer, 0, readBytes);
+                }
+            } catch (Exception ex) {
+                throw ex;
+            } finally {
+                stream.close();
+                resStreamOut.close();
             }
-            int readBytes;
-            byte[] buffer = new byte[4096];
-            resStreamOut = new FileOutputStream(tempDirectoryPath + resourceName);
-            while ((readBytes = stream.read(buffer)) > 0) {
-                resStreamOut.write(buffer, 0, readBytes);
-            }
-        } catch (Exception ex) {
-            throw ex;
-        } finally {
-            stream.close();
-            resStreamOut.close();
         }
 
         return tempDirectoryPath + resourceName;
