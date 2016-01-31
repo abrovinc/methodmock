@@ -6,7 +6,8 @@ package com.swoklabs.amock.model;
 public class MockContainer {
     private final String methodId;
     private final Object mockResponse;
-    public MockContainer(final String methodId, final Object mockResponse){
+
+    public MockContainer(final String methodId, final Object mockResponse) {
         this.methodId = methodId;
         this.mockResponse = mockResponse;
     }
@@ -17,5 +18,10 @@ public class MockContainer {
 
     public Object getMockResponse() {
         return mockResponse;
+    }
+
+    @Override
+    public String toString() {
+        return methodId + " " + mockResponse.toString();
     }
 }
