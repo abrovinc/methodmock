@@ -19,14 +19,12 @@ public class LoadJavaAgent {
     private static final String tempDirFullPathAndResource = tempDirBase + tempDirSufix + resourceName;
 
     public LoadJavaAgent() {
-        boolean isLoaded = isAspectJAgentLoaded();
+        final boolean isLoaded = isAspectJAgentLoaded();
         if (!isLoaded) {
             try {
                 VirtualMachine vm = VirtualMachine.attach(getCurrentPID());
-                final String totalPath = copyAgentToTempFolder().replace("\\", "/");
-                final File agentFile = new File(totalPath);
-                agentFile.deleteOnExit();
-                vm.loadAgent(totalPath);
+                copyAgentToTempFolder();
+                vm.loadAgent(tempDirFullPathAndResource);
                 vm.detach();
             } catch (AgentLoadException | AgentInitializationException | IOException | AttachNotSupportedException e) {
                 e.printStackTrace();
@@ -36,7 +34,7 @@ public class LoadJavaAgent {
         }
     }
 
-    protected static String copyAgentToTempFolder() throws Exception {
+    protected static void copyAgentToTempFolder() throws Exception {
         createTempDirIfNotExist();
         if (!isAgentAlreadyThere()) {
             InputStream stream = null;
@@ -59,8 +57,6 @@ public class LoadJavaAgent {
                 resStreamOut.close();
             }
         }
-
-        return tempDirFullPathAndResource;
     }
 
     protected static void createTempDirIfNotExist() {
@@ -74,7 +70,6 @@ public class LoadJavaAgent {
         final File checkIfJarExists = new File(tempDirFullPathAndResource);
         return checkIfJarExists.exists();
     }
-
 
     protected static boolean isAspectJAgentLoaded() {
         boolean isLoaded = true;
