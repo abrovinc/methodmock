@@ -12,9 +12,13 @@ import java.lang.management.ManagementFactory;
  * Created by Steve on 2016-01-27.
  */
 public class LoadJavaAgent {
+    private static final String resourceName = "/aspectjweaver-1.8.8.jar";
+    private static final String tempDirBase = System.getProperty("java.io.tmpdir");
+    private static final String tempDirSufix = "agentfolder";
+    private static final String tempDirFullPath = tempDirBase + tempDirSufix;
+    private static final String tempDirFullPathAndResource = tempDirBase + tempDirSufix + resourceName;
 
-    public LoadJavaAgent(){};
-    static {
+    public LoadJavaAgent() {
         boolean isLoaded = isAspectJAgentLoaded();
         if (!isLoaded) {
             try {
@@ -32,56 +36,57 @@ public class LoadJavaAgent {
         }
     }
 
-    private static String copyAgentToTempFolder() throws Exception {
-        final String resourceName = "/aspectjweaver-1.8.8.jar";
-        final String tempDirBase = System.getProperty("java.io.tmpdir");
-        final String agentFolder = "agentfolder";
-        final String tempDirectoryPath = tempDirBase + agentFolder;
-        final File tempDir = new File(tempDirectoryPath);
-        if (!tempDir.exists()) {
-            tempDir.mkdir();
-        }
-        final File checkIfJarExists = new File(tempDirectoryPath + resourceName);
-        checkIfJarExists.deleteOnExit();
-        if (!checkIfJarExists.exists()) {
+    protected static String copyAgentToTempFolder() throws Exception {
+        createTempDirIfNotExist();
+        if (!isAgentAlreadyThere()) {
             InputStream stream = null;
             OutputStream resStreamOut = null;
             try {
                 stream = LoadJavaAgent.class.getResourceAsStream(resourceName);
                 if (stream == null) {
-                    throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
+                    throw new Exception("Cannot find \"" + resourceName + "\".");
                 }
                 int readBytes;
                 byte[] buffer = new byte[4096];
-                resStreamOut = new FileOutputStream(tempDirectoryPath + resourceName);
+                resStreamOut = new FileOutputStream(tempDirFullPathAndResource);
                 while ((readBytes = stream.read(buffer)) > 0) {
                     resStreamOut.write(buffer, 0, readBytes);
                 }
-            } catch (Exception ex) {
-                throw ex;
+            } catch (Exception e) {
+                throw e;
             } finally {
                 stream.close();
                 resStreamOut.close();
             }
         }
 
-        return tempDirectoryPath + resourceName;
+        return tempDirFullPathAndResource;
     }
 
-    private static boolean isAspectJAgentLoaded() {
-        System.out.println("isAspectJAgentLoaded()");
-        boolean isLoaded = false;
+    protected static void createTempDirIfNotExist() {
+        final File tempDir = new File(tempDirFullPath);
+        if (!tempDir.exists()) {
+            tempDir.mkdir();
+        }
+    }
+
+    protected static boolean isAgentAlreadyThere() {
+        final File checkIfJarExists = new File(tempDirFullPathAndResource);
+        return checkIfJarExists.exists();
+    }
+
+
+    protected static boolean isAspectJAgentLoaded() {
+        boolean isLoaded = true;
         try {
             Class.forName("org.aspectj.weaver.loadtime.Agent");
-            System.out.println("Loaded");
-            isLoaded = true;
         } catch (ClassNotFoundException e) {
-            System.out.println("WARNING: AspectJ weaving agent not loaded");
+            isLoaded = false;
         }
         return isLoaded;
     }
 
-    private static String getCurrentPID() {
+    protected static String getCurrentPID() {
         String jvm = ManagementFactory.getRuntimeMXBean().getName();
         return jvm.substring(0, jvm.indexOf('@'));
     }

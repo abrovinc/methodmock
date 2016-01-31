@@ -27,13 +27,6 @@
             <artifactId>model</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<artifactId>tools</artifactId>-->
-        <!--<groupId>tools</groupId>-->
-        <!--<version>1</version>-->
-        <!--<scope>system</scope>-->
-        <!--<systemPath>${basedir}/src/main/resources/tools.jar</systemPath>-->
-        <!--</dependency>-->
         <!-- TESTING DEPENDENCY -->
         <dependency>
             <groupId>junit</groupId>
@@ -87,7 +80,6 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>META-INF/aop.xml</include>
-                    <include>tools.jar</include>
                     <include>aspectjweaver-1.8.8.jar</include>
                 </includes>
             </resource>
