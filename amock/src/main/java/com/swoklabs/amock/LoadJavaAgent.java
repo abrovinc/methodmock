@@ -11,39 +11,43 @@ import java.lang.management.ManagementFactory;
 /**
  * Created by Steve on 2016-01-27.
  */
-public class AmockInit {
-    public AmockInit() {
+public class LoadJavaAgent {
 
-        try {
-            VirtualMachine vm = VirtualMachine.attach(getCurrentPID());
-            final String totalPath = copyAgentToTempFolder().replace("\\","/");
-            final File agentFile = new File(totalPath);
-            agentFile.deleteOnExit();
-            vm.loadAgent(totalPath);
-            vm.detach();
-        } catch (AgentLoadException | AgentInitializationException | IOException | AttachNotSupportedException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public LoadJavaAgent(){};
+    static {
+        boolean isLoaded = isAspectJAgentLoaded();
+        if (!isLoaded) {
+            try {
+                VirtualMachine vm = VirtualMachine.attach(getCurrentPID());
+                final String totalPath = copyAgentToTempFolder().replace("\\", "/");
+                final File agentFile = new File(totalPath);
+                agentFile.deleteOnExit();
+                vm.loadAgent(totalPath);
+                vm.detach();
+            } catch (AgentLoadException | AgentInitializationException | IOException | AttachNotSupportedException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
     }
-    static public String copyAgentToTempFolder() throws Exception {
+
+    private static String copyAgentToTempFolder() throws Exception {
         final String resourceName = "/aspectjweaver-1.8.8.jar";
         final String tempDirBase = System.getProperty("java.io.tmpdir");
         final String agentFolder = "agentfolder";
-        final String tempDirectoryPath = tempDirBase+agentFolder;
+        final String tempDirectoryPath = tempDirBase + agentFolder;
         final File tempDir = new File(tempDirectoryPath);
-        if(!tempDir.exists()){
+        if (!tempDir.exists()) {
             tempDir.mkdir();
         }
-        final File checkIfJarExists = new File(tempDirectoryPath+resourceName);
+        final File checkIfJarExists = new File(tempDirectoryPath + resourceName);
         checkIfJarExists.deleteOnExit();
-        if(!checkIfJarExists.exists()) {
+        if (!checkIfJarExists.exists()) {
             InputStream stream = null;
             OutputStream resStreamOut = null;
             try {
-                stream = AmockInit.class.getResourceAsStream(resourceName);
+                stream = LoadJavaAgent.class.getResourceAsStream(resourceName);
                 if (stream == null) {
                     throw new Exception("Cannot get resource \"" + resourceName + "\" from Jar file.");
                 }
@@ -62,6 +66,19 @@ public class AmockInit {
         }
 
         return tempDirectoryPath + resourceName;
+    }
+
+    private static boolean isAspectJAgentLoaded() {
+        System.out.println("isAspectJAgentLoaded()");
+        boolean isLoaded = false;
+        try {
+            Class.forName("org.aspectj.weaver.loadtime.Agent");
+            System.out.println("Loaded");
+            isLoaded = true;
+        } catch (ClassNotFoundException e) {
+            System.out.println("WARNING: AspectJ weaving agent not loaded");
+        }
+        return isLoaded;
     }
 
     private static String getCurrentPID() {
