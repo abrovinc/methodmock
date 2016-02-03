@@ -9,10 +9,23 @@
     </parent>
 
     <artifactId>model</artifactId>
-
     <packaging>jar</packaging>
-    <name>Amock Model</name>
 
+    <name>Amock Model</name>
+    <description>The framework's model project</description>
+    <url>http://amock.swoklabs.com</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/Nosfert/amock.swoklabs.com</url>
+    </scm>
     <dependencies>
         <dependency>
             <groupId>log4j</groupId>

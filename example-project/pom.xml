@@ -9,9 +9,23 @@
     </parent>
 
     <artifactId>example-project</artifactId>
-
     <packaging>jar</packaging>
+
     <name>Amock example-project</name>
+    <description>The framework's example project</description>
+    <url>http://amock.swoklabs.com</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/Nosfert/amock.swoklabs.com</url>
+    </scm>
 
     <dependencies>
         <dependency>
