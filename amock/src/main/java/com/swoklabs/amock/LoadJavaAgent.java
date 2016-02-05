@@ -14,7 +14,7 @@ import java.lang.management.ManagementFactory;
 public class LoadJavaAgent {
     private static final String resourceName = "/aspectjweaver-1.8.8.jar";
     private static final String tempDirBase = System.getProperty("java.io.tmpdir");
-    private static final String tempDirSufix = "agentfolder";
+    private static final String tempDirSufix = "/agentfolder";
     private static final String tempDirFullPath = tempDirBase + tempDirSufix;
     private static final String tempDirFullPathAndResource = tempDirBase + tempDirSufix + resourceName;
 
@@ -40,6 +40,9 @@ public class LoadJavaAgent {
             InputStream stream = null;
             OutputStream resStreamOut = null;
             try {
+                File file = new File(tempDirFullPathAndResource);
+                file.createNewFile();
+                file.deleteOnExit();
                 stream = LoadJavaAgent.class.getResourceAsStream(resourceName);
                 if (stream == null) {
                     throw new Exception("Cannot find \"" + resourceName + "\".");
