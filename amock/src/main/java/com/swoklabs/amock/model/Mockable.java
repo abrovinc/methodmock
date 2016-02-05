@@ -6,13 +6,13 @@ package com.swoklabs.amock.model;
 public class Mockable {
 
     private final Object mockResponse;
-    private final Use1 use;
+    private final Use use;
 
     public Mockable(final Object mockResponse){
-        this(Use1.InfinitelyAndAddLast, mockResponse);
+        this(Use.InfinitelyAndAddLast, mockResponse);
     }
 
-    public Mockable(final Use1 use, final Object mockResponse) {
+    public Mockable(final Use use, final Object mockResponse) {
         this.mockResponse = mockResponse;
         this.use = use;
     }
@@ -27,7 +27,7 @@ public class Mockable {
         return mockResponse.toString();
     }
 
-    public Use1 getUse() {
+    public Use getUse() {
         return use;
     }
 }

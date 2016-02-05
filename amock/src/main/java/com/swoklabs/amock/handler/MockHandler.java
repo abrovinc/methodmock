@@ -1,7 +1,7 @@
 package com.swoklabs.amock.handler;
 
 import com.swoklabs.amock.model.Mockable;
-import com.swoklabs.amock.model.Use1;
+import com.swoklabs.amock.model.Use;
 import com.swoklabs.amock.model.exception.MethodReturnsVoid;
 import com.swoklabs.amock.model.exception.MockObjectClassDiffer;
 import org.aspectj.lang.ProceedingJoinPoint;
