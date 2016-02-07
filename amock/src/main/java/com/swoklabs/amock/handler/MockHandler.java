@@ -1,9 +1,9 @@
 package com.swoklabs.amock.handler;
 
-import com.swoklabs.amock.model.Mockable;
 import com.swoklabs.amock.model.Use;
 import com.swoklabs.amock.model.exception.MethodReturnsVoid;
 import com.swoklabs.amock.model.exception.MockObjectClassDiffer;
+import com.swoklabs.amock.specification.AMockSpecifcation;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
@@ -16,24 +16,24 @@ import java.util.LinkedList;
  */
 public class MockHandler {
 
-    private static InheritableThreadLocal<HashMap<String, Deque<Mockable>>> localCache = new InheritableThreadLocal<HashMap<String, Deque<Mockable>>>() {
+    private static InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>> localCache = new InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>>() {
         @Override
-        protected HashMap<String, Deque<Mockable>> initialValue() {
+        protected HashMap<String, Deque<AMockSpecifcation>> initialValue() {
             return new HashMap<>();
         }
     };
 
-    public static void registerMockContainer(final String methodId, final Mockable mockable) {
+    public static void registerAMockSpecification(final String methodId, final AMockSpecifcation aMockSpecifcation) {
 
-        final HashMap<String, Deque<Mockable>> temp = localCache.get();
+        final HashMap<String, Deque<AMockSpecifcation>> temp = localCache.get();
         Deque deque = temp.get(methodId);
 
         if (deque == null) {
-            deque = new LinkedList<Mockable>();
-            deque.add(mockable);
+            deque = new LinkedList<AMockSpecifcation>();
+            deque.add(aMockSpecifcation);
             temp.put(methodId, deque);
         } else {
-            deque.add(mockable);
+            deque.add(aMockSpecifcation);
         }
     }
 
@@ -42,26 +42,31 @@ public class MockHandler {
 
         //TODO Maybe add support to change inparameter values and not skip methods because they are void
         if (!isReturnTypeVoid(proceedingJoinPoint)) {
-            final Deque<Mockable> deque = localCache.get().get(methodId);
+            final Deque<AMockSpecifcation> deque = localCache.get().get(methodId);
 
             if (deque != null) {
 
-                final Mockable mockable = deque.pollFirst();
-                if (mockable != null) {
-
-                    final Object mockResponse = mockable.getMockResponse();
+                final AMockSpecifcation aMockSpecifcation = deque.pollFirst();
+                if (aMockSpecifcation != null) {
+                    final Object mockResponse = aMockSpecifcation.getReturnObject();
 
                     if (isMockObjectAndReturnTheSameType(mockResponse, proceedingJoinPoint)) {
                         returnObj = mockResponse;
 
                         //adds the mockable back to the Deque if the Use variable is correctly set
-                        if (mockable.getUse().equals(Use.InfinitelyAndAddLast)) {
-                            deque.add(mockable);
+                        if (aMockSpecifcation.getUse().equals(Use.InfinitelyAndAddLast)) {
+                            deque.add(aMockSpecifcation);
                         }
                     } else {
                         throw new MockObjectClassDiffer("Classes differ, method expected to return a : X but got : "+mockResponse.getClass());
                     }
                 }
+                else {
+                    returnObj = proceedingJoinPoint.proceed();
+                }
+            }
+            else {
+                returnObj = proceedingJoinPoint.proceed();
             }
         }
         else {
