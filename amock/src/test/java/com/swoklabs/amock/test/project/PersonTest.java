@@ -1,8 +1,8 @@
 package com.swoklabs.amock.test.project;
 
 import com.swoklabs.amock.LoadJavaAgent;
-import com.swoklabs.amock.handler.MockHandler;
-import com.swoklabs.amock.model.Mockable;
+import com.swoklabs.amock.model.exception.MethodReturnsVoid;
+import com.swoklabs.amock.model.exception.MockObjectClassDiffer;
 import com.swoklabs.amock.test.project.classes.Person;
 import com.swoklabs.amock.test.project.classes.PersonController;
 import com.swoklabs.amock.test.project.classes.PersonView;
@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import java.net.ConnectException;
 
+import static com.swoklabs.amock.SwoklabAMock.mockMethod;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -40,11 +41,10 @@ public class PersonTest extends LoadJavaAgent {
     }
 
     @Test
-    public void testMockedDbCall(){
+    public void testMockedDbCall() throws MockObjectClassDiffer, MethodReturnsVoid {
 
         final Person mockPerson = new Person("Steve","Widisnghoff","abc");
-        final Mockable mockable = new Mockable(mockPerson);
-        MockHandler.registerMockContainer("123", mockable);
+        mockMethod("123").returns(mockPerson);
         try {
             personController.getAndPrintPerson("abc");
         } catch (ConnectException e) {
