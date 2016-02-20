@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>example-project</artifactId>
+    <artifactId>amock-test-project</artifactId>
     <packaging>jar</packaging>
 
     <name>Amock example-project</name>

@@ -18,4 +18,8 @@ public class PersonController {
         final Person person = databaseSimulator.getPersonFromDatabase(id);
         personView.printPerson(person);
     }
+
+    public void savePersonId(String id) throws ConnectException {
+        databaseSimulator.savePersonFromDatabase(id);
+    }
 }

@@ -57,7 +57,11 @@ public class MockHandler {
                         if (aMockSpecifcation.getUse().equals(Use.InfinitelyAndAddLast)) {
                             deque.add(aMockSpecifcation);
                         }
-                    } else {
+                    }
+                    else if (mockResponse instanceof Exception || mockResponse instanceof RuntimeException){
+                        throw (Throwable) mockResponse;
+                    }
+                    else {
                         throw new MockObjectClassDiffer("Classes differ, method expected to return a : X but got : "+mockResponse.getClass());
                     }
                 }

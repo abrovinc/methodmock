@@ -98,6 +98,6 @@
     <modules>
         <module>model</module>
         <module>amock</module>
-        <module>example-project</module>
+        <module>amock-test-project</module>
     </modules>
 </project>
