@@ -99,5 +99,6 @@
         <module>model</module>
         <module>amock</module>
         <module>amock-test-project</module>
+        <module>example-projects</module>
     </modules>
 </project>

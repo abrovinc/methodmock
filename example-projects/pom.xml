@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.swoklabs.amock</groupId>
+    <artifactId>example-projects</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>example-projects</name>
+    <description>The framework parent project</description>
+    <url>http://amock.swoklabs.com</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/Nosfert/amock.swoklabs.com</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Steve Widinghoff</name>
+            <organization>swoklabs.com</organization>
+            <email>steve@swoklabs.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <modules>
+        <module>java-versions</module>
+    </modules>
+</project>
