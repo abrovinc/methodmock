@@ -19,7 +19,7 @@ public class MockHandler {
     private static InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>> localCache = new InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>>() {
         @Override
         protected HashMap<String, Deque<AMockSpecifcation>> initialValue() {
-            return new HashMap<>();
+            return new HashMap<String, Deque<AMockSpecifcation>>();
         }
     };
 

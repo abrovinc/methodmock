@@ -18,29 +18,24 @@ public class AMockSpecifcationImpl implements AMockSpecifcation {
         this.methodId = methodId;
     }
 
-    @Override
     public AMockSpecifcation calls(Use use) throws MockObjectClassDiffer, MethodReturnsVoid {
         this.use = use;
         return this;
     }
 
-    @Override
     public AMockSpecifcation returns(Object returnObject) throws MockObjectClassDiffer, MethodReturnsVoid {
         this.returnObject = returnObject;
         return this;
     }
 
-    @Override
     public Use getUse() {
         return use;
     }
 
-    @Override
     public Object getReturnObject() {
         return returnObject;
     }
 
-    @Override
     public String getMethodId() {
         return methodId;
     }
