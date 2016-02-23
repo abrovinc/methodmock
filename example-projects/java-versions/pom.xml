@@ -40,9 +40,6 @@
         <java.source-target.version>1.8</java.source-target.version>
     </properties>
     <modules>
-        <module>java-1.5</module>
         <module>java-1.6</module>
-        <module>java-1.7</module>
-        <module>java-1.8</module>
     </modules>
 </project>
