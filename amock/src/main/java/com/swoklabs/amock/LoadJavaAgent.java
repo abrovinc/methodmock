@@ -26,14 +26,14 @@ public class LoadJavaAgent {
                 copyAgentToTempFolder();
                 vm.loadAgent(tempDirFullPathAndResource);
                 vm.detach();
-            } catch (AgentLoadException e){
-                e.printStackTrace();
-            } catch (AgentInitializationException e){
-                e.printStackTrace();
-            } catch (IOException e){
-                e.printStackTrace();
-            } catch (AttachNotSupportedException e) {
-                e.printStackTrace();
+//            } catch (AgentLoadException e){
+//                e.printStackTrace();
+//            } catch (AgentInitializationException e){
+//                e.printStackTrace();
+//            } catch (IOException e){
+//                e.printStackTrace();
+//            } catch (AttachNotSupportedException e) {
+//                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
