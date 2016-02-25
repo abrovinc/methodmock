@@ -1,8 +1,8 @@
 package com.swoklabs.amock.handler;
 
 import com.swoklabs.amock.model.Use;
-import com.swoklabs.amock.model.exception.MethodReturnsVoid;
-import com.swoklabs.amock.model.exception.MockObjectClassDiffer;
+import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
+import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
 import com.swoklabs.amock.specification.AMockSpecifcation;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -19,7 +19,7 @@ public class MockHandler {
     private static InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>> localCache = new InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>>() {
         @Override
         protected HashMap<String, Deque<AMockSpecifcation>> initialValue() {
-            return new HashMap<>();
+            return new HashMap<String, Deque<AMockSpecifcation>>();
         }
     };
 
@@ -57,8 +57,12 @@ public class MockHandler {
                         if (aMockSpecifcation.getUse().equals(Use.InfinitelyAndAddLast)) {
                             deque.add(aMockSpecifcation);
                         }
-                    } else {
-                        throw new MockObjectClassDiffer("Classes differ, method expected to return a : X but got : "+mockResponse.getClass());
+                    }
+                    else if (mockResponse instanceof Exception || mockResponse instanceof RuntimeException){
+                        throw (Throwable) mockResponse;
+                    }
+                    else {
+                        throw new MockObjectClassDifferException("Classes differ, method expected to return a : X but got : "+mockResponse.getClass());
                     }
                 }
                 else {
@@ -70,7 +74,7 @@ public class MockHandler {
             }
         }
         else {
-            throw new MethodReturnsVoid("The framework does not support methods that return void");
+            throw new MethodReturnsVoidException("The framework does not support methods that return void");
         }
 
         return returnObj;
