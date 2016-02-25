@@ -1,8 +1,8 @@
 package com.swoklabs.amock.test.project;
 
 import com.swoklabs.amock.LoadJavaAgent;
-import com.swoklabs.amock.model.exception.MethodReturnsVoid;
-import com.swoklabs.amock.model.exception.MockObjectClassDiffer;
+import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
+import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
 import com.swoklabs.amock.test.project.classes.PersonController;
 import com.swoklabs.amock.test.project.classes.PersonView;
 import org.junit.Rule;
@@ -32,7 +32,7 @@ public class MockExceptionTest extends LoadJavaAgent {
     }
 
     @Test
-    public void throwMockException() throws MockObjectClassDiffer, MethodReturnsVoid, ConnectException {
+    public void throwMockException() throws MockObjectClassDifferException, MethodReturnsVoidException, ConnectException {
         thrown.expect(Exception.class);
         thrown.expectMessage("Mock exception");
         mockMethod("123").returns(new Exception("Mock exception"));
@@ -40,16 +40,16 @@ public class MockExceptionTest extends LoadJavaAgent {
     }
 
     @Test
-    public void throwMethodReturnsVoid() throws MockObjectClassDiffer, MethodReturnsVoid, ConnectException {
-        thrown.expect(MethodReturnsVoid.class);
+    public void throwMethodReturnsVoid() throws MockObjectClassDifferException, MethodReturnsVoidException, ConnectException {
+        thrown.expect(MethodReturnsVoidException.class);
         thrown.expectMessage("The framework does not support methods that return void");
         mockMethod("1233").returns("should failand throw exception");
         personController.savePersonId("abc");
     }
 
     @Test
-    public void throwMockObjectClassDiffer() throws MockObjectClassDiffer, MethodReturnsVoid, ConnectException {
-        thrown.expect(MockObjectClassDiffer.class);
+    public void throwMockObjectClassDiffer() throws MockObjectClassDifferException, MethodReturnsVoidException, ConnectException {
+        thrown.expect(MockObjectClassDifferException.class);
         thrown.expectMessage("Classes differ, method expected to return a : X but got : class java.lang.String");
         mockMethod("123").returns("Should throw exception");
         personController.getAndPrintPerson("abc");

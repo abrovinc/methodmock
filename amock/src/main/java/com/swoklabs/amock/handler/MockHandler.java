@@ -1,8 +1,8 @@
 package com.swoklabs.amock.handler;
 
 import com.swoklabs.amock.model.Use;
-import com.swoklabs.amock.model.exception.MethodReturnsVoid;
-import com.swoklabs.amock.model.exception.MockObjectClassDiffer;
+import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
+import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
 import com.swoklabs.amock.specification.AMockSpecifcation;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -62,7 +62,7 @@ public class MockHandler {
                         throw (Throwable) mockResponse;
                     }
                     else {
-                        throw new MockObjectClassDiffer("Classes differ, method expected to return a : X but got : "+mockResponse.getClass());
+                        throw new MockObjectClassDifferException("Classes differ, method expected to return a : X but got : "+mockResponse.getClass());
                     }
                 }
                 else {
@@ -74,7 +74,7 @@ public class MockHandler {
             }
         }
         else {
-            throw new MethodReturnsVoid("The framework does not support methods that return void");
+            throw new MethodReturnsVoidException("The framework does not support methods that return void");
         }
 
         return returnObj;

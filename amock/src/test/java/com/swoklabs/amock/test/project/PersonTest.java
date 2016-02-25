@@ -1,8 +1,8 @@
 package com.swoklabs.amock.test.project;
 
 import com.swoklabs.amock.LoadJavaAgent;
-import com.swoklabs.amock.model.exception.MethodReturnsVoid;
-import com.swoklabs.amock.model.exception.MockObjectClassDiffer;
+import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
+import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
 import com.swoklabs.amock.test.project.classes.Person;
 import com.swoklabs.amock.test.project.classes.PersonController;
 import com.swoklabs.amock.test.project.classes.PersonView;
@@ -41,7 +41,7 @@ public class PersonTest extends LoadJavaAgent {
     }
 
     @Test
-    public void testMockedDbCall() throws MockObjectClassDiffer, MethodReturnsVoid {
+    public void testMockedDbCall() throws MockObjectClassDifferException, MethodReturnsVoidException {
 
         final Person mockPerson = new Person("Steve","Widisnghoff","abc");
         mockMethod("123").returns(mockPerson);

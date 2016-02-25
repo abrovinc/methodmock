@@ -26,21 +26,19 @@ public class LoadJavaAgent {
                 copyAgentToTempFolder();
                 vm.loadAgent(tempDirFullPathAndResource);
                 vm.detach();
-//            } catch (AgentLoadException e){
-//                e.printStackTrace();
-//            } catch (AgentInitializationException e){
-//                e.printStackTrace();
-//            } catch (IOException e){
-//                e.printStackTrace();
-//            } catch (AttachNotSupportedException e) {
-//                e.printStackTrace();
-            } catch (Exception e) {
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (AgentInitializationException e) {
+                e.printStackTrace();
+            } catch (AttachNotSupportedException e) {
+                e.printStackTrace();
+            } catch (AgentLoadException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    protected static void copyAgentToTempFolder() throws Exception {
+    protected static void copyAgentToTempFolder() throws IOException {
         createTempDirIfNotExist();
         if (!isAgentAlreadyThere()) {
             InputStream stream = null;
@@ -51,7 +49,7 @@ public class LoadJavaAgent {
                 file.deleteOnExit();
                 stream = LoadJavaAgent.class.getResourceAsStream(resourceName);
                 if (stream == null) {
-                    throw new Exception("Cannot find \"" + resourceName + "\".");
+                    throw new FileNotFoundException("Cannot find \"" + resourceName + "\".");
                 }
                 int readBytes;
                 byte[] buffer = new byte[4096];
@@ -59,8 +57,10 @@ public class LoadJavaAgent {
                 while ((readBytes = stream.read(buffer)) > 0) {
                     resStreamOut.write(buffer, 0, readBytes);
                 }
-            } catch (Exception e) {
-                throw e;
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             } finally {
                 stream.close();
                 resStreamOut.close();
