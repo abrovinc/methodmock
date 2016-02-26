@@ -26,7 +26,7 @@
             <name>Steve Widinghoff</name>
             <id>Nosfert</id>
             <organization>swoklabs.com</organization>
-            <email>steve@swoklabs.com</email>
+            <email>steve at swoklabs.com</email>
             <organizationUrl>http://www.swoklabs.com</organizationUrl>
             <timezone>+1</timezone>
             <roles>
@@ -36,7 +36,7 @@
         <developer>
             <name>Örjan Karlsson</name>
             <id>solzar</id>
-            <email>orjan@swoklabs.com</email>
+            <email>orjan at swoklabs.com</email>
             <organizationUrl>http://www.swoklabs.com</organizationUrl>
             <timezone>+1</timezone>
             <roles>
