@@ -12,6 +12,34 @@
     <description>The framework parent project</description>
     <url>http://amock.swoklabs.com</url>
 
+    <scm>
+        <url>https://github.com/Nosfert/amock.swoklabs.com</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Steve Widinghoff</name>
+            <id>Nosfert</id>
+            <organization>swoklabs.com</organization>
+            <email>steve@swoklabs.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Örjan Karlsson</name>
+            <id>solzar</id>
+            <email>orjan@swoklabs.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -20,24 +48,12 @@
         </license>
     </licenses>
 
-    <scm>
-        <url>https://github.com/Nosfert/amock.swoklabs.com</url>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>Steve Widinghoff</name>
-            <organization>swoklabs.com</organization>
-            <email>steve@swoklabs.com</email>
-            <organizationUrl>http://www.swoklabs.com</organizationUrl>
-        </developer>
-    </developers>
-
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <encoding>UTF-8</encoding>
         <maven.compiler.source>1.6</maven.compiler.source>
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <java.source-target.version>1.6</java.source-target.version>
+        <target>1.6</target>
+        <source>1.6</source>
+        <compliance.level>1.6</compliance.level>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -69,9 +85,9 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.3</version>
                     <configuration>
-                        <source>${maven.compiler.source}</source>
-                        <target>${maven.compiler.target}</target>
-                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <source>${source}</source>
+                        <target>${target}</target>
+                        <encoding>${encoding}</encoding>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -79,9 +95,9 @@
                     <artifactId>aspectj-maven-plugin</artifactId>
                     <version>1.7</version>
                     <configuration>
-                        <complianceLevel>1.6</complianceLevel>
-                        <source>1.6</source>
-                        <target>1.6</target>
+                        <complianceLevel>${compliance.level}</complianceLevel>
+                        <source>${source}</source>
+                        <target>${target}</target>
                     </configuration>
                     <executions>
                         <execution>

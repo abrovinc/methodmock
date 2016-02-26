@@ -12,14 +12,6 @@
     <description>The framework parent project</description>
     <url>http://amock.swoklabs.com</url>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
     <scm>
         <url>https://github.com/Nosfert/amock.swoklabs.com</url>
     </scm>
@@ -27,11 +19,34 @@
     <developers>
         <developer>
             <name>Steve Widinghoff</name>
+            <id>Nosfert</id>
             <organization>swoklabs.com</organization>
             <email>steve@swoklabs.com</email>
             <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Örjan Karlsson</name>
+            <id>solzar</id>
+            <email>orjan@swoklabs.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <timezone>+1</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
         </developer>
     </developers>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <modules>
         <module>java-versions</module>
