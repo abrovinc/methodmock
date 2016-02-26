@@ -14,7 +14,12 @@
     <name>Amock Model</name>
     <description>The framework's model project</description>
     <url>http://amock.swoklabs.com</url>
+    <inceptionYear>2016</inceptionYear>
 
+    <issueManagement>
+        <system>GitHub Issue Tracking</system>
+        <url />
+    </issueManagement>
     <scm>
         <url>https://github.com/Nosfert/amock.swoklabs.com</url>
     </scm>
