@@ -16,9 +16,6 @@ import static com.swoklabs.amock.SwoklabAMock.mockMethod;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-/**
- * Created by Steve on 2016-01-27.
- */
 public class PersonTest extends LoadJavaAgent {
     final PersonView personView = new PersonView();
     final PersonController personController = new PersonController(personView);
@@ -33,24 +30,30 @@ public class PersonTest extends LoadJavaAgent {
 
     @Test
     public void testMockedDbCall() throws MockObjectClassDifferException, MethodReturnsVoidException {
-
+        Exception ex = null;
         final Person mockPerson = new Person("Steve","Widinghoff","abc");
         mockMethod("123").returns(mockPerson);
         try {
             personController.getAndPrintPerson("abc");
         } catch (ConnectException e) {
+            ex = e;
             fail("Should not throw exception");
         }
+        assertEquals(ex == null, true);
     }
+
 
     @Test
     public void testDbException(){
+        Exception ex = null;
         try {
             personController.getAndPrintPerson("abc");
         } catch (ConnectException e) {
+            ex = e;
             System.out.println("Exception is thrown : "+e.getMessage());
             assertEquals("Could not connect and get",e.getMessage());
         }
+        assertEquals(ex != null, true);
     }
 
 }

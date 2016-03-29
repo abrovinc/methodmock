@@ -6,14 +6,11 @@ import java.lang.management.ManagementFactory;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Steve Widinghoff on 2016-01-31.
- */
 public class LoadJavaAgentTest extends LoadJavaAgent {
 
     @Test
     public void copyAgentToTempFolderTest(){
-
+        assertEquals(isAgentAlreadyThere(),true);
     }
 
     @Test
