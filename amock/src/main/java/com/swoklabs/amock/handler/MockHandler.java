@@ -11,9 +11,6 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-/**
- * Created by Steve on 2016-01-27.
- */
 public class MockHandler {
 
     private static InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>> localCache = new InheritableThreadLocal<HashMap<String, Deque<AMockSpecifcation>>>() {
@@ -26,7 +23,7 @@ public class MockHandler {
     public static void registerAMockSpecification(final String methodId, final AMockSpecifcation aMockSpecifcation) {
 
         final HashMap<String, Deque<AMockSpecifcation>> temp = localCache.get();
-        Deque deque = temp.get(methodId);
+        Deque<AMockSpecifcation> deque = temp.get(methodId);
 
         if (deque == null) {
             deque = new LinkedList<AMockSpecifcation>();
@@ -38,7 +35,7 @@ public class MockHandler {
     }
 
     public Object handleMockCall(final ProceedingJoinPoint proceedingJoinPoint, final String methodId) throws Throwable {
-        Object returnObj = null;
+        final Object returnObj;
 
         //TODO Maybe add support to change inparameter values and not skip methods because they are void
         if (!isReturnTypeVoid(proceedingJoinPoint)) {
@@ -58,7 +55,7 @@ public class MockHandler {
                             deque.add(aMockSpecifcation);
                         }
                     }
-                    else if (mockResponse instanceof Exception || mockResponse instanceof RuntimeException){
+                    else if (mockResponse instanceof Exception){
                         throw (Throwable) mockResponse;
                     }
                     else {
