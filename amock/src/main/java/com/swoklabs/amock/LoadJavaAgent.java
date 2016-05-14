@@ -12,7 +12,7 @@ import java.lang.management.ManagementFactory;
  * Created by Steve on 2016-01-27.
  */
 public class LoadJavaAgent {
-    private static final String resourceName = "/aspectjweaver-1.8.8.jar";
+    private static final String resourceName = "/aspectjweaver.jar";
     private static final String tempDirBase = System.getProperty("java.io.tmpdir");
     private static final String tempDirSufix = "/agentfolder";
     private static final String tempDirFullPath = tempDirBase + tempDirSufix;
