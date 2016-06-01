@@ -4,6 +4,7 @@ import com.swoklabs.amock.model.Use;
 import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
 import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
 import com.swoklabs.amock.specification.AMockSpecifcation;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
@@ -55,7 +56,8 @@ public class MockHandler {
                     } else if (mockResponse instanceof Exception) {
                         throw (Throwable) mockResponse;
                     } else {
-                        throw new MockObjectClassDifferException("Classes differ, method expected to return a : X but got : " + mockResponse.getClass());
+                        final Class returnType = getClassFromJointPoint(proceedingJoinPoint);
+                        throw new MockObjectClassDifferException("Classes differ, method expected to return a : " + returnType.getClass() + " but got : " + mockResponse.getClass());
                     }
                 } else {
                     returnObj = proceedingJoinPoint.proceed();
@@ -78,8 +80,7 @@ public class MockHandler {
 
     private static boolean isMockObjectAndReturnTheSameType(final Object mockResponse, final ProceedingJoinPoint proceedingJoinPoint) {
 
-        final MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-        final Class returnType = methodSignature.getReturnType();
+        final Class returnType = getClassFromJointPoint(proceedingJoinPoint);
         final boolean isMockObjectAndReturnTheSameType = (returnType.equals(mockResponse.getClass()) || isPrimitive(returnType, mockResponse.getClass()));
         return isMockObjectAndReturnTheSameType;
     }
@@ -101,10 +102,14 @@ public class MockHandler {
         if (mappedValue != null && mappedValue.equalsIgnoreCase(mockResponse.getName())) {
             isPrimitive = new Boolean(true);
         } else {
-            System.out.println("Mapped : "+returnType.getName() + " =  "+ mockResponse.getName());
             isPrimitive = new Boolean(false);
         }
         return isPrimitive;
     }
 
+    private static Class getClassFromJointPoint(final JoinPoint joinPoint) {
+        final MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        final Class aClass = methodSignature.getReturnType();
+        return aClass;
+    }
 }
