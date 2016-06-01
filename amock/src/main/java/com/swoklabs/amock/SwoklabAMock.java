@@ -11,4 +11,8 @@ public class SwoklabAMock {
         mockHandler.registerAMockSpecification(methodId, aMockSpecifcation);
         return aMockSpecifcation;
     }
+
+    public static void clearMock(){
+        mockHandler.clearMock();
+    }
 }

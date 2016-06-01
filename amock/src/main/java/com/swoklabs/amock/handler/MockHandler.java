@@ -112,4 +112,8 @@ public class MockHandler {
         final Class aClass = methodSignature.getReturnType();
         return aClass;
     }
+
+    public void clearMock() {
+        localCache.remove();
+    }
 }
