@@ -22,14 +22,6 @@ import static org.junit.Assert.fail;
 public class PersonTest extends LoadJavaAgent {
     private final PersonView personView = new PersonView();
     private final PersonController personController = new PersonController(personView);
-    @Before
-    public void setup(){
-    }
-
-    @After
-    public void teardown(){
-
-    }
 
     @Test
     public void testDbException(){

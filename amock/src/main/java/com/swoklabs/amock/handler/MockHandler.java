@@ -7,9 +7,7 @@ import com.swoklabs.amock.specification.AMockSpecifcation;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 public class MockHandler {
 
@@ -54,23 +52,18 @@ public class MockHandler {
                         if (aMockSpecifcation.getUse().equals(Use.InfinitelyAndAddLast)) {
                             deque.add(aMockSpecifcation);
                         }
-                    }
-                    else if (mockResponse instanceof Exception){
+                    } else if (mockResponse instanceof Exception) {
                         throw (Throwable) mockResponse;
+                    } else {
+                        throw new MockObjectClassDifferException("Classes differ, method expected to return a : X but got : " + mockResponse.getClass());
                     }
-                    else {
-                        throw new MockObjectClassDifferException("Classes differ, method expected to return a : X but got : "+mockResponse.getClass());
-                    }
-                }
-                else {
+                } else {
                     returnObj = proceedingJoinPoint.proceed();
                 }
-            }
-            else {
+            } else {
                 returnObj = proceedingJoinPoint.proceed();
             }
-        }
-        else {
+        } else {
             throw new MethodReturnsVoidException("The framework does not support methods that return void");
         }
 
@@ -87,7 +80,31 @@ public class MockHandler {
 
         final MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
         final Class returnType = methodSignature.getReturnType();
-        final boolean isMockObjectAndReturnTheSameType = returnType.equals(mockResponse.getClass());
+        final boolean isMockObjectAndReturnTheSameType = (returnType.equals(mockResponse.getClass()) || isPrimitive(returnType, mockResponse.getClass()));
         return isMockObjectAndReturnTheSameType;
     }
+
+    private static Boolean isPrimitive(Class returnType, Class mockResponse) {
+
+        final Map<String, String> primitiveMapping = new HashMap<String, String>();
+        primitiveMapping.put("int", "java.lang.Integer");
+        primitiveMapping.put("long", "java.lang.Long");
+        primitiveMapping.put("double", "java.lang.Double");
+        primitiveMapping.put("float", "java.lang.Float");
+        primitiveMapping.put("boolean", "java.lang.Boolean");
+        primitiveMapping.put("byte", "java.lang.Byte");
+        primitiveMapping.put("char", "java.lang.Character");
+        primitiveMapping.put("short", "java.lang.Short");
+
+        final Boolean isPrimitive;
+        final String mappedValue = primitiveMapping.get(returnType.getName());
+        if (mappedValue != null && mappedValue.equalsIgnoreCase(mockResponse.getName())) {
+            isPrimitive = new Boolean(true);
+        } else {
+            System.out.println("Mapped : "+returnType.getName() + " =  "+ mockResponse.getName());
+            isPrimitive = new Boolean(false);
+        }
+        return isPrimitive;
+    }
+
 }
