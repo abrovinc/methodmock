@@ -35,6 +35,8 @@ public class MockInterceptorTest extends LoadJavaAgent {
         assertEquals(true, isDefaultFalse());
         clearMock();
         assertEquals(false, isDefaultFalse());
+        mockMethod("isDefault").returns(true);
+        assertEquals(true, isDefaultFalse());
     }
 
     @MockInTest(methodId = "isPublic")
