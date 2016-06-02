@@ -18,7 +18,7 @@ public class MockInterceptor {
     }
 
     @Around("annotationMockInTest(mockInTest)")
-    public Object beforeMethodCall(ProceedingJoinPoint proceedingJoinPoint, MockInTest mockInTest) throws Throwable {
+    public Object aroundMockInTest(ProceedingJoinPoint proceedingJoinPoint, MockInTest mockInTest) throws Throwable {
         return mockHandler.handleMockCall(proceedingJoinPoint, mockInTest.methodId());
     }
 }
