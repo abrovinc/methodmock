@@ -20,6 +20,7 @@ public class LoadJavaAgent {
 
     public LoadJavaAgent() {
         final boolean isLoaded = isAspectJAgentLoaded();
+        System.out.println("IsLoaded . "+isLoaded);
         if (!isLoaded) {
             try {
                 VirtualMachine vm = VirtualMachine.attach(getCurrentPID());
@@ -36,7 +37,6 @@ public class LoadJavaAgent {
                 e.printStackTrace();
             }
         }
-        while(!isAspectJAgentLoaded()){}
     }
 
     protected static void copyAgentToTempFolder() throws IOException {
@@ -84,8 +84,10 @@ public class LoadJavaAgent {
     protected static boolean isAspectJAgentLoaded() {
         boolean isLoaded = true;
         try {
-            Class.forName("org.aspectj.weaver.loadtime.Agent");
-        } catch (ClassNotFoundException e) {
+            org.aspectj.weaver.loadtime.Agent.getInstrumentation();
+        } catch (NoClassDefFoundError e) {
+            isLoaded = false;
+        } catch (UnsupportedOperationException e) {
             isLoaded = false;
         }
         return isLoaded;
