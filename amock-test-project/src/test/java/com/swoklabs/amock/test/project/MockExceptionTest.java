@@ -50,7 +50,7 @@ public class MockExceptionTest extends LoadJavaAgent {
     @Test
     public void throwMockObjectClassDiffer() throws MockObjectClassDifferException, MethodReturnsVoidException, ConnectException {
         thrown.expect(MockObjectClassDifferException.class);
-        thrown.expectMessage("Classes differ, method expected to return a : X but got : class java.lang.String");
+        thrown.expectMessage("Classes differ, method expected to return a : class java.lang.Class but got : class java.lang.String");
         mockMethod("123").returns("Should throw exception");
         personController.getAndPrintPerson("abc");
     }

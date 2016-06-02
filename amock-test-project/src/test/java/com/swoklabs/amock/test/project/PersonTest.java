@@ -50,7 +50,6 @@ public class PersonTest extends LoadJavaAgent {
             personController.getAndPrintPerson("abc");
         } catch (ConnectException e) {
             ex = e;
-            System.out.println("Exception is thrown : "+e.getMessage());
             assertEquals("Could not connect and get",e.getMessage());
         }
         assertEquals(ex != null, true);

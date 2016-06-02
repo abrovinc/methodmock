@@ -36,6 +36,7 @@ public class LoadJavaAgent {
                 e.printStackTrace();
             }
         }
+        while(!isAspectJAgentLoaded()){}
     }
 
     protected static void copyAgentToTempFolder() throws IOException {

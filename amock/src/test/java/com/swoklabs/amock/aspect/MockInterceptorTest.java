@@ -5,6 +5,8 @@ import com.swoklabs.amock.annotations.MockInTest;
 import com.swoklabs.amock.model.Use;
 import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
 import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.swoklabs.amock.SwoklabAMock.clearMock;
@@ -14,48 +16,57 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * Created by Steve Widinghoff on 2016-01-31.
  */
-public class MockInterceptorTest extends LoadJavaAgent {
+public class MockInterceptorTest extends LoadJavaAgent{
+
+    @BeforeClass
+    public static void init(){
+        new LoadJavaAgent();
+    }
+
 
     @Test
     public void testMockInterceptor() throws MockObjectClassDifferException, MethodReturnsVoidException {
+        TestInnerClass testInnerClass = new TestInnerClass();
         mockMethod("isPublic").calls(Use.ONCE).returns(true);
-        assertEquals(true, isPublicFalse());
-        assertEquals(false, isPublicFalse());
+        assertEquals(true, testInnerClass.isPublicFalse());
+        assertEquals(false, testInnerClass.isPublicFalse());
 
         mockMethod("isPrivate").returns(true);
-        assertEquals(true, isPrivateFalse());
-        assertEquals(false, isPrivateFalse());
+        assertEquals(true, testInnerClass.isPrivateFalse());
+        assertEquals(false, testInnerClass.isPrivateFalse());
 
         mockMethod("isProtected").returns(true);
-        assertEquals(true, isProtectedFalse());
-        assertEquals(false, isProtectedFalse());
+        assertEquals(true, testInnerClass.isProtectedFalse());
+        assertEquals(false, testInnerClass.isProtectedFalse());
 
         mockMethod("isDefault").calls(Use.InfinitelyAndAddLast).returns(true);
-        assertEquals(true, isDefaultFalse());
-        assertEquals(true, isDefaultFalse());
+        assertEquals(true, testInnerClass.isDefaultFalse());
+        assertEquals(true, testInnerClass.isDefaultFalse());
         clearMock();
-        assertEquals(false, isDefaultFalse());
+        assertEquals(false, testInnerClass.isDefaultFalse());
         mockMethod("isDefault").returns(true);
-        assertEquals(true, isDefaultFalse());
+        assertEquals(true, testInnerClass.isDefaultFalse());
     }
 
-    @MockInTest(methodId = "isPublic")
-    public boolean isPublicFalse(){
-        return false;
-    }
+    private class TestInnerClass {
+        @MockInTest(methodId = "isPublic")
+        public boolean isPublicFalse() {
+            return false;
+        }
 
-    @MockInTest(methodId = "isPrivate")
-    private boolean isPrivateFalse(){
-        return false;
-    }
+        @MockInTest(methodId = "isPrivate")
+        private boolean isPrivateFalse() {
+            return false;
+        }
 
-    @MockInTest(methodId = "isProtected")
-    protected boolean isProtectedFalse(){
-        return false;
-    }
+        @MockInTest(methodId = "isProtected")
+        protected boolean isProtectedFalse() {
+            return false;
+        }
 
-    @MockInTest(methodId = "isDefault")
-    boolean isDefaultFalse(){
-        return false;
+        @MockInTest(methodId = "isDefault")
+        boolean isDefaultFalse() {
+            return false;
+        }
     }
 }
