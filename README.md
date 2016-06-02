@@ -1,7 +1,7 @@
-# amock.swoklabs.com
-Aspect Mock framework. 
+# methodmock.swoklabs.com
+Method Mock framework. 
 
-Developed by Steve Widinghoff and ...
+Developed by Steve Widinghoff and Örjan Karlsson
 
 ##  How it works
 The framework uses Aspect Oriented Programming to create a type of proxy class that intercepts all the calls to the original object. 

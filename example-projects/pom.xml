@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.swoklabs.amock</groupId>
+    <groupId>com.swoklabs.methodmock</groupId>
     <artifactId>example-projects</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>example-projects</name>
     <description>Example projects</description>
-    <url>http://amock.swoklabs.com</url>
+    <url>http://methodmock.swoklabs.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
@@ -18,7 +18,7 @@
         <url />
     </issueManagement>
     <scm>
-        <url>https://github.com/Nosfert/amock.swoklabs.com</url>
+        <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
     </scm>
 
     <developers>

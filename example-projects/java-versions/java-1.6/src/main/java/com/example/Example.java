@@ -1,6 +1,6 @@
 package com.example;
 
-import com.swoklabs.amock.annotations.MockInTest;
+import com.swoklabs.methodmock.annotations.MockInTest;
 
 /**
  * Created by Steve Widinghoff on 2016-02-20.
