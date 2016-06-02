@@ -4,6 +4,7 @@ import com.sun.tools.attach.AgentInitializationException;
 import com.sun.tools.attach.AgentLoadException;
 import com.sun.tools.attach.AttachNotSupportedException;
 import com.sun.tools.attach.VirtualMachine;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.lang.management.ManagementFactory;
@@ -17,25 +18,34 @@ public class LoadJavaAgent {
     private static final String tempDirSufix = "/agentfolder";
     private static final String tempDirFullPath = tempDirBase + tempDirSufix;
     private static final String tempDirFullPathAndResource = tempDirBase + tempDirSufix + resourceName;
+    private Logger logger = Logger.getLogger(LoadJavaAgent.class);
 
     public LoadJavaAgent() {
-        final boolean isLoaded = isAspectJAgentLoaded();
-        System.out.println("IsLoaded . "+isLoaded);
-        if (!isLoaded) {
+        logger.info("IsLoaded . "+isAspectJAgentLoaded());
+        Boolean isException = false;
+        while (!isAspectJAgentLoaded() && !isException) {
+            logger.info("Trying to load aspectj-weaver");
             try {
                 VirtualMachine vm = VirtualMachine.attach(getCurrentPID());
                 copyAgentToTempFolder();
                 vm.loadAgent(tempDirFullPathAndResource);
                 vm.detach();
             } catch (IOException e) {
-                e.printStackTrace();
+                isException = true;
+                logger.info("IOException when trying to load aspectj-weaver");
             } catch (AgentInitializationException e) {
-                e.printStackTrace();
+                logger.info("AgentInitializationException when trying to load aspectj-weaver");
+                isException = true;
             } catch (AttachNotSupportedException e) {
-                e.printStackTrace();
+                logger.info("AttachNotSupportedException when trying to load aspectj-weaver");
+                isException = true;
             } catch (AgentLoadException e) {
-                e.printStackTrace();
+                logger.info("AgentLoadException when trying to load aspectj-weaver");
+                isException = true;
             }
+        }
+        if (isException){
+            System.exit(1);
         }
     }
 
