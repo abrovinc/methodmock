@@ -5,8 +5,6 @@ import com.swoklabs.amock.annotations.MockInTest;
 import com.swoklabs.amock.model.Use;
 import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
 import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.swoklabs.amock.SwoklabAMock.clearMock;
@@ -17,12 +15,6 @@ import static junit.framework.TestCase.assertEquals;
  * Created by Steve Widinghoff on 2016-01-31.
  */
 public class MockInterceptorTest extends LoadJavaAgent{
-
-    @BeforeClass
-    public static void init(){
-        new LoadJavaAgent();
-    }
-
 
     @Test
     public void testMockInterceptor() throws MockObjectClassDifferException, MethodReturnsVoidException {

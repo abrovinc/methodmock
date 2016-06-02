@@ -4,7 +4,6 @@ import com.swoklabs.amock.LoadJavaAgent;
 import com.swoklabs.amock.annotations.MockInTest;
 import com.swoklabs.amock.model.exception.MethodReturnsVoidException;
 import com.swoklabs.amock.model.exception.MockObjectClassDifferException;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static com.swoklabs.amock.SwoklabAMock.mockMethod;
@@ -14,11 +13,6 @@ import static junit.framework.TestCase.assertEquals;
  * Created by Steve Widinghoff on 2016-01-31.
  */
 public class MockHandlerTest extends LoadJavaAgent{
-
-    @BeforeClass
-    public static void init(){
-        new LoadJavaAgent();
-    }
 
     @Test
     public void primitiveTypesTest() throws MockObjectClassDifferException, MethodReturnsVoidException {
