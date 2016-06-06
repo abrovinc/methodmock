@@ -5,17 +5,38 @@ Developed by Steve Widinghoff and Örjan Karlsson
 
 
 ## Example
-Add dependencies to the methodmock and the model. 
-Add the annotation to the methods that you want to mock, add a unique id  in the annotation. 
+# Dependencies
+There are two projects that you need to depend on. 
+The model project needs to be added as a normal dependency. 
+The methodmock project only needs to be available during the test-phase. 
 
-The mockmethod framework relies on the ability of aspectj-weaver. Thus we need to load that java agent into the runtime. 
-There are numerous ways to do this and we have created a support class that loads the java agent during runtime. 
+# Annotate
+In the model project there is a single interface, an annotation class. 
+This annotation is the markup for all the methods that you want to mock during the test-phase. 
+The annotation require you to fill in an id, the id should be unique across your project.   
 
 # Loading java agent
+The framework relies on loading an java-agent that's called aspectjweaver.
+There are a few different ways to load the java-agent and here are the most common
 1. Extend LoadJavaAgent in the unit-test class. This will load the java agent. 
 2. Use @BeforeClass initialization method. There do a new LoadJavaAgent() call. 
-3. 
+3. Load java-agent through parameter in run-config
+4. Load java-agent by configuring it to load via maven/grade etc. 
 
+# Using mockmethod
+Once you have added your annotations to the methods you want to mock it's time to actually mock them in unit-tests
+
+Simple mock
+mockMethod("<insert method id>").returns(<insert return object here>); 
+
+Advance mock
+mockMethod("<insert method id>").calls(<insert Use Enum value>).returns(<insert return object here>); 
+the calls method defines if the object in returns should only be returned once once or reused several times. 
+The default for calls is that the return value will be removed once its been used. 
+
+# Clearing mockmethod
+If you have multiple tests and you need to clear the results that's been used you need to manually clear it. 
+You can do this by calling clearMock() 
 
 ##  How it works
 The framework uses Aspect Oriented Programming to create a type of proxy class that intercepts all the calls to the original object. 
