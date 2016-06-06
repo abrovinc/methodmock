@@ -39,36 +39,46 @@ public class MockHandler {
         //TODO Maybe add support to change inparameter values and not skip methods because they are void
         if (!isReturnTypeVoid(proceedingJoinPoint)) {
             final Deque<MethodMockSpecifcation> deque = localCache.get().get(methodId);
+            returnObj = getReturnableObject(proceedingJoinPoint, deque);
+        } else {
+            throw new MethodReturnsVoidException("The framework does not support methods that return void");
+        }
+        return returnObj;
+    }
 
-            if (deque != null) {
+    private Object getReturnableObject(ProceedingJoinPoint proceedingJoinPoint, Deque<MethodMockSpecifcation> deque) throws Throwable {
+        final Object returnObj;
+        if (deque != null) {
 
-                final MethodMockSpecifcation methodMockSpecifcation = deque.pollFirst();
-                if (methodMockSpecifcation != null) {
-                    final Object mockResponse = methodMockSpecifcation.getReturnObject();
+            final MethodMockSpecifcation methodMockSpecifcation = deque.pollFirst();
+            if (methodMockSpecifcation != null) {
+                final Object mockResponse = methodMockSpecifcation.getReturnObject();
 
-                    if (isMockObjectAndReturnTheSameType(mockResponse, proceedingJoinPoint)) {
-                        returnObj = mockResponse;
-
-                        //adds the mockable back to the Deque if the Use variable is correctly set
-                        if (methodMockSpecifcation.getUse().equals(Use.InfinitelyAndAddLast)) {
-                            deque.add(methodMockSpecifcation);
-                        }
-                    } else if (mockResponse instanceof Exception) {
-                        throw (Throwable) mockResponse;
-                    } else {
-                        final Class returnType = getClassFromJointPoint(proceedingJoinPoint);
-                        throw new MockObjectClassDifferException("Classes differ, method expected to return a : " + returnType.getClass() + " but got : " + mockResponse.getClass());
-                    }
-                } else {
-                    returnObj = proceedingJoinPoint.proceed();
-                }
+                returnObj = getMockedObject(proceedingJoinPoint, deque, methodMockSpecifcation, mockResponse);
             } else {
                 returnObj = proceedingJoinPoint.proceed();
             }
         } else {
-            throw new MethodReturnsVoidException("The framework does not support methods that return void");
+            returnObj = proceedingJoinPoint.proceed();
         }
+        return returnObj;
+    }
 
+    private Object getMockedObject(ProceedingJoinPoint proceedingJoinPoint, Deque<MethodMockSpecifcation> deque, MethodMockSpecifcation methodMockSpecifcation, Object mockResponse) throws Throwable {
+        final Object returnObj;
+        if (isMockObjectAndReturnTheSameType(mockResponse, proceedingJoinPoint)) {
+            returnObj = mockResponse;
+
+            //adds the mockable back to the Deque if the Use variable is correctly set
+            if (methodMockSpecifcation.getUse().equals(Use.InfinitelyAndAddLast)) {
+                deque.add(methodMockSpecifcation);
+            }
+        } else if (mockResponse instanceof Exception) {
+            throw (Throwable) mockResponse;
+        } else {
+            final Class returnType = getClassFromJointPoint(proceedingJoinPoint);
+            throw new MockObjectClassDifferException("Classes differ, method expected to return a : " + returnType.getClass() + " but got : " + mockResponse.getClass());
+        }
         return returnObj;
     }
 
@@ -81,8 +91,9 @@ public class MockHandler {
     private static boolean isMockObjectAndReturnTheSameType(final Object mockResponse, final ProceedingJoinPoint proceedingJoinPoint) {
 
         final Class returnType = getClassFromJointPoint(proceedingJoinPoint);
-        final boolean isMockObjectAndReturnTheSameType = (returnType.equals(mockResponse.getClass()) || isPrimitive(returnType, mockResponse.getClass()));
-        return isMockObjectAndReturnTheSameType;
+        final boolean stevesDebugBoolean = (returnType.equals(mockResponse.getClass())
+                || isPrimitive(returnType, mockResponse.getClass()));
+        return stevesDebugBoolean;
     }
 
     private static boolean isPrimitive(Class returnType, Class mockResponse) {
@@ -105,8 +116,8 @@ public class MockHandler {
 
     private static Class getClassFromJointPoint(final JoinPoint joinPoint) {
         final MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        final Class aClass = methodSignature.getReturnType();
-        return aClass;
+        final Class clazz = methodSignature.getReturnType();
+        return clazz;
     }
 
     public void clearMock() {
