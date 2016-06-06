@@ -85,7 +85,7 @@ public class MockHandler {
         return isMockObjectAndReturnTheSameType;
     }
 
-    private static Boolean isPrimitive(Class returnType, Class mockResponse) {
+    private static boolean isPrimitive(Class returnType, Class mockResponse) {
 
         final Map<String, String> primitiveMapping = new HashMap<String, String>();
         primitiveMapping.put("int", "java.lang.Integer");
@@ -97,12 +97,12 @@ public class MockHandler {
         primitiveMapping.put("char", "java.lang.Character");
         primitiveMapping.put("short", "java.lang.Short");
 
-        final Boolean isPrimitive;
+        final boolean isPrimitive;
         final String mappedValue = primitiveMapping.get(returnType.getName());
-        if (mappedValue != null && mappedValue.equalsIgnoreCase(mockResponse.getName())) {
-            isPrimitive = new Boolean(true);
+        if (mappedValue.equalsIgnoreCase(mockResponse.getName())) {
+            isPrimitive = true;
         } else {
-            isPrimitive = new Boolean(false);
+            isPrimitive = false;
         }
         return isPrimitive;
     }
