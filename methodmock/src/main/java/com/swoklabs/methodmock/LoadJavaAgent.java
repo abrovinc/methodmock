@@ -31,16 +31,16 @@ public class LoadJavaAgent {
                 vm.detach();
             } catch (IOException e) {
                 logger.info("IOException when trying to load aspectj-weaver");
-                throw new RuntimeException(e.getMessage(), e.getCause());
+                throw new RuntimeException(e.getMessage(), e);
             } catch (AgentInitializationException e) {
                 logger.info("AgentInitializationException when trying to load aspectj-weaver");
-                throw new RuntimeException(e.getMessage(), e.getCause());
+                throw new RuntimeException(e.getMessage(), e);
             } catch (AttachNotSupportedException e) {
                 logger.info("AttachNotSupportedException when trying to load aspectj-weaver");
-                throw new RuntimeException(e.getMessage(), e.getCause());
+                throw new RuntimeException(e.getMessage(), e);
             } catch (AgentLoadException e) {
                 logger.info("AgentLoadException when trying to load aspectj-weaver");
-                throw new RuntimeException(e.getMessage(), e.getCause());
+                throw new RuntimeException(e.getMessage(), e);
             }
         }
     }
