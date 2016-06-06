@@ -19,6 +19,7 @@ public class LoadJavaAgent {
     private static final String tempDirFullPath = tempDirBase + tempDirSufix;
     private static final String tempDirFullPathAndResource = tempDirBase + tempDirSufix + resourceName;
     private Logger logger = Logger.getLogger(LoadJavaAgent.class);
+    private static final int BUFFER_SIZE = 4096;
 
     public LoadJavaAgent() {
         logger.info("IsLoaded . "+isAspectJAgentLoaded());
@@ -63,7 +64,7 @@ public class LoadJavaAgent {
                     throw new FileNotFoundException("Cannot find \"" + resourceName + "\".");
                 }
                 int readBytes;
-                byte[] buffer = new byte[4096];
+                byte[] buffer = new byte[BUFFER_SIZE];
                 resStreamOut = new FileOutputStream(tempDirFullPathAndResource);
                 while ((readBytes = stream.read(buffer)) > 0) {
                     resStreamOut.write(buffer, 0, readBytes);

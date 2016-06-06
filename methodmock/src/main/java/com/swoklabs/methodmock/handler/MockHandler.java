@@ -46,7 +46,7 @@ public class MockHandler {
         return returnObj;
     }
 
-    private Object getReturnableObject(ProceedingJoinPoint proceedingJoinPoint, Deque<MethodMockSpecifcation> deque) throws Throwable {
+    private Object getReturnableObject(final ProceedingJoinPoint proceedingJoinPoint, final Deque<MethodMockSpecifcation> deque) throws Throwable {
         final Object returnObj;
         if (deque != null) {
 
@@ -64,7 +64,7 @@ public class MockHandler {
         return returnObj;
     }
 
-    private Object getMockedObject(ProceedingJoinPoint proceedingJoinPoint, Deque<MethodMockSpecifcation> deque, MethodMockSpecifcation methodMockSpecifcation, Object mockResponse) throws Throwable {
+    private Object getMockedObject(final ProceedingJoinPoint proceedingJoinPoint, final Deque<MethodMockSpecifcation> deque, final MethodMockSpecifcation methodMockSpecifcation, final Object mockResponse) throws Throwable {
         final Object returnObj;
         if (isMockObjectAndReturnTheSameType(mockResponse, proceedingJoinPoint)) {
             returnObj = mockResponse;
@@ -107,7 +107,6 @@ public class MockHandler {
         primitiveMapping.put("byte", "java.lang.Byte");
         primitiveMapping.put("char", "java.lang.Character");
         primitiveMapping.put("short", "java.lang.Short");
-
 
         final String mappedValue = primitiveMapping.get(returnType.getName());
         final boolean isPrimitive = mappedValue.equalsIgnoreCase(mockResponse.getName());
