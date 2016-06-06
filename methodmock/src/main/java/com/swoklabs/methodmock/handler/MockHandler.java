@@ -96,7 +96,7 @@ public class MockHandler {
         return stevesDebugBoolean;
     }
 
-    private static Boolean isPrimitive(Class returnType, Class mockResponse) {
+    private static boolean isPrimitive(Class returnType, Class mockResponse) {
 
         final Map<String, String> primitiveMapping = new HashMap<String, String>();
         primitiveMapping.put("int", "java.lang.Integer");
@@ -108,10 +108,17 @@ public class MockHandler {
         primitiveMapping.put("char", "java.lang.Character");
         primitiveMapping.put("short", "java.lang.Short");
 
+<<<<<<< HEAD
         final String mappedValue = primitiveMapping.get(returnType.getName());
         final boolean stevesOtherDebugBoolean = (mappedValue != null
                 && mappedValue.equalsIgnoreCase(mockResponse.getName()));
         return stevesOtherDebugBoolean;
+=======
+
+        final String mappedValue = primitiveMapping.get(returnType.getName());
+        final boolean isPrimitive = mappedValue.equalsIgnoreCase(mockResponse.getName());
+        return isPrimitive;
+>>>>>>> c07c4c4acb0286946f5e816b14d253df4d887d04
     }
 
     private static Class getClassFromJointPoint(final JoinPoint joinPoint) {
