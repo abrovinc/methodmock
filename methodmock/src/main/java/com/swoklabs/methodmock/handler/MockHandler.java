@@ -70,7 +70,7 @@ public class MockHandler {
             returnObj = mockResponse;
 
             //adds the mockable back to the Deque if the Use variable is correctly set
-            if (methodMockSpecifcation.getUse().equals(Use.InfinitelyAndAddLast)) {
+            if (methodMockSpecifcation.getUse().equals(Use.FOREVER)) {
                 deque.add(methodMockSpecifcation);
             }
         } else if (mockResponse instanceof Exception) {
@@ -109,7 +109,7 @@ public class MockHandler {
         primitiveMapping.put("short", "java.lang.Short");
 
         final String mappedValue = primitiveMapping.get(returnType.getName());
-        final boolean isPrimitive = mappedValue.equalsIgnoreCase(mockResponse.getName());
+        final boolean isPrimitive = mockResponse.getName().equalsIgnoreCase(mappedValue);
         return isPrimitive;
     }
 

@@ -5,5 +5,5 @@ package com.swoklabs.methodmock.model;
  */
 public enum Use {
     ONCE,
-    InfinitelyAndAddLast;// TODO: Check the spelling on this enum.
+    FOREVER;
 }
