@@ -22,9 +22,8 @@ public class LoadJavaAgent {
     private static final int BUFFER_SIZE = 4096;
 
     public LoadJavaAgent() {
-        logger.info("IsLoaded . "+isAspectJAgentLoaded());
-        Boolean isException = false;
-        while (!isAspectJAgentLoaded() && !isException) {
+        logger.info("IsLoaded . " + isAspectJAgentLoaded());
+        while (!isAspectJAgentLoaded()) {
             logger.info("Trying to load aspectj-weaver");
             try {
                 VirtualMachine vm = VirtualMachine.attach(getCurrentPID());
@@ -32,21 +31,18 @@ public class LoadJavaAgent {
                 vm.loadAgent(tempDirFullPathAndResource);
                 vm.detach();
             } catch (IOException e) {
-                isException = true;
                 logger.info("IOException when trying to load aspectj-weaver");
+                throw new RuntimeException(e.getMessage(), e.getCause());
             } catch (AgentInitializationException e) {
                 logger.info("AgentInitializationException when trying to load aspectj-weaver");
-                isException = true;
+                throw new RuntimeException(e.getMessage(), e.getCause());
             } catch (AttachNotSupportedException e) {
                 logger.info("AttachNotSupportedException when trying to load aspectj-weaver");
-                isException = true;
+                throw new RuntimeException(e.getMessage(), e.getCause());
             } catch (AgentLoadException e) {
                 logger.info("AgentLoadException when trying to load aspectj-weaver");
-                isException = true;
+                throw new RuntimeException(e.getMessage(), e.getCause());
             }
-        }
-        if (isException){
-            System.exit(1);
         }
     }
 
