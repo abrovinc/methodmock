@@ -27,6 +27,6 @@ public class Person {
     }
     @Override
     public String toString(){
-        return "ID: "+id+" - FirstName : "+firstname+" - Surname : "+surname;
+        return "ID: "+getId()+" - FirstName : "+getFirstname()+" - Surname : "+getSurname();
     }
 }
