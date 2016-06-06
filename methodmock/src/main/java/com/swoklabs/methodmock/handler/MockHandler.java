@@ -97,13 +97,9 @@ public class MockHandler {
         primitiveMapping.put("char", "java.lang.Character");
         primitiveMapping.put("short", "java.lang.Short");
 
-        final boolean isPrimitive;
+
         final String mappedValue = primitiveMapping.get(returnType.getName());
-        if (mappedValue.equalsIgnoreCase(mockResponse.getName())) {
-            isPrimitive = true;
-        } else {
-            isPrimitive = false;
-        }
+        final boolean isPrimitive = mappedValue.equalsIgnoreCase(mockResponse.getName());
         return isPrimitive;
     }
 
