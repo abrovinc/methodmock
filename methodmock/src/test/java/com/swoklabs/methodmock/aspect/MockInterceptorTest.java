@@ -31,7 +31,7 @@ public class MockInterceptorTest extends LoadJavaAgent{
         assertEquals(true, testInnerClass.isProtectedFalse());
         assertEquals(false, testInnerClass.isProtectedFalse());
 
-        mockMethod("isDefault").calls(Use.FOREVER).returns(true);
+        mockMethod("isDefault").calls(Use.REUSE).returns(true);
         assertEquals(true, testInnerClass.isDefaultFalse());
         assertEquals(true, testInnerClass.isDefaultFalse());
         clearMock();

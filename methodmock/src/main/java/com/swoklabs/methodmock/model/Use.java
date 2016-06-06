@@ -5,5 +5,5 @@ package com.swoklabs.methodmock.model;
  */
 public enum Use {
     ONCE,
-    FOREVER;
+    REUSE;
 }

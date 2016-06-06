@@ -70,7 +70,7 @@ public class MockHandler {
             returnObj = mockResponse;
 
             //adds the mockable back to the Deque if the Use variable is correctly set
-            if (methodMockSpecifcation.getUse().equals(Use.FOREVER)) {
+            if (methodMockSpecifcation.getUse().equals(Use.REUSE)) {
                 deque.add(methodMockSpecifcation);
             }
         } else if (mockResponse instanceof Exception) {
@@ -92,26 +92,11 @@ public class MockHandler {
 
         final Class returnType = getClassFromJointPoint(proceedingJoinPoint);
         final boolean stevesDebugBoolean = (returnType.equals(mockResponse.getClass())
-                || isPrimitive(returnType, mockResponse.getClass()));
+                || DataTypeUtils.isPrimitive(returnType, mockResponse.getClass()));
         return stevesDebugBoolean;
     }
 
-    private static boolean isPrimitive(Class returnType, Class mockResponse) {
 
-        final Map<String, String> primitiveMapping = new HashMap<String, String>();
-        primitiveMapping.put("int", "java.lang.Integer");
-        primitiveMapping.put("long", "java.lang.Long");
-        primitiveMapping.put("double", "java.lang.Double");
-        primitiveMapping.put("float", "java.lang.Float");
-        primitiveMapping.put("boolean", "java.lang.Boolean");
-        primitiveMapping.put("byte", "java.lang.Byte");
-        primitiveMapping.put("char", "java.lang.Character");
-        primitiveMapping.put("short", "java.lang.Short");
-
-        final String mappedValue = primitiveMapping.get(returnType.getName());
-        final boolean isPrimitive = mockResponse.getName().equalsIgnoreCase(mappedValue);
-        return isPrimitive;
-    }
 
     private static Class getClassFromJointPoint(final JoinPoint joinPoint) {
         final MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
