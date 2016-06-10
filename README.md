@@ -34,7 +34,7 @@ mockMethod("<insert method id>").calls(<insert Use Enum value>).returns(<insert 
 the calls method defines if the object in returns should only be returned once once or reused several times. 
 The default for calls is that the return value will be removed once its been used. 
 
-# Clearing mockmethod
+# Clearing methodmock
 If you have multiple tests and you need to clear the results that's been used you need to manually clear it. 
 You can do this by calling clearMock() 
 
