@@ -8,17 +8,17 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>model</artifactId>
+    <artifactId>annotation</artifactId>
     <packaging>jar</packaging>
 
-    <name>methodmock Model</name>
-    <description>The framework's model project</description>
+    <name>MethodMock Annotation</name>
+    <description>Contains the annotations needed for the methodmock implementation</description>
     <url>http://methodmock.swoklabs.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
         <system>GitHub Issue Tracking</system>
-        <url />
+        <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
     </issueManagement>
     <scm>
         <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
