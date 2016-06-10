@@ -48,6 +48,16 @@
                 <role>Developer</role>
             </roles>
         </developer>
+        <developer>
+            <name>Alex SKorohod</name>
+            <id>sweetca</id>
+            <email>alexey.skorohod at gmail.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <timezone>+2</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
     </developers>
 
     <licenses>
