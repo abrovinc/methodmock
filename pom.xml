@@ -117,7 +117,7 @@
         </pluginManagement>
     </build>
     <modules>
-        <module>model</module>
+        <module>annotation</module>
         <module>methodmock</module>
         <module>methodmock-test-project</module>
         <module>example-projects</module>

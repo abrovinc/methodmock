@@ -1,7 +1,7 @@
 package com.swoklabs.methodmock.handler;
 
 import com.swoklabs.methodmock.LoadJavaAgent;
-import com.swoklabs.methodmock.annotations.MockInTest;
+import com.swoklabs.methodmock.annotations.MockMethod;
 import com.swoklabs.methodmock.model.exception.MethodReturnsVoidException;
 import com.swoklabs.methodmock.model.exception.MockObjectClassDifferException;
 import org.junit.Test;
@@ -54,42 +54,42 @@ public class MockHandlerTest extends LoadJavaAgent{
     }
 
     private class TestInnerClass {
-        @MockInTest(methodId = "testInt")
+        @MockMethod(id = "testInt")
         private int testInt() {
             return -1;
         }
 
-        @MockInTest(methodId = "testLong")
+        @MockMethod(id = "testLong")
         private long testLong() {
             return -1L;
         }
 
-        @MockInTest(methodId = "testDouble")
+        @MockMethod(id = "testDouble")
         private double testDouble() {
             return -1D;
         }
 
-        @MockInTest(methodId = "testFloat")
+        @MockMethod(id = "testFloat")
         private float testFloat() {
             return -1F;
         }
 
-        @MockInTest(methodId = "testBoolean")
+        @MockMethod(id = "testBoolean")
         private boolean testBoolean() {
             return false;
         }
 
-        @MockInTest(methodId = "testByte")
+        @MockMethod(id = "testByte")
         private byte testByte() {
             return (byte) 0x1;
         }
 
-        @MockInTest(methodId = "testChar")
+        @MockMethod(id = "testChar")
         private char testChar() {
             return 'c';
         }
 
-        @MockInTest(methodId = "testShort")
+        @MockMethod(id = "testShort")
         private short testShort() {
             return -1;
         }

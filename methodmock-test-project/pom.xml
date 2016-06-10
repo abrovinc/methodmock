@@ -59,7 +59,7 @@
     <dependencies>
         <dependency>
             <groupId>com.swoklabs.methodmock</groupId>
-            <artifactId>model</artifactId>
+            <artifactId>annotation</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

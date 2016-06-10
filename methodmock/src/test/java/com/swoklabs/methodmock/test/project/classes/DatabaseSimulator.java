@@ -1,6 +1,6 @@
 package com.swoklabs.methodmock.test.project.classes;
 
-import com.swoklabs.methodmock.annotations.MockInTest;
+import com.swoklabs.methodmock.annotations.MockMethod;
 
 import java.net.ConnectException;
 
@@ -9,12 +9,12 @@ import java.net.ConnectException;
  */
 public class DatabaseSimulator {
 
-    @MockInTest(methodId = "123")
+    @MockMethod(id = "123")
     public Person getPersonFromDatabase(String personId) throws ConnectException {
         throw new ConnectException("Could not connect and get");
     }
 
-    @MockInTest(methodId = "1233")
+    @MockMethod(id = "1233")
     public void savePersonFromDatabase(String personId) throws ConnectException {
         throw new ConnectException("Could not connect and not save");
     }
