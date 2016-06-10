@@ -8,11 +8,11 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>model</artifactId>
+    <artifactId>methodmock-test-project</artifactId>
     <packaging>jar</packaging>
 
-    <name>methodmock Model</name>
-    <description>The framework's model project</description>
+    <name>methodmock example-project</name>
+    <description>The framework's integration test project</description>
     <url>http://methodmock.swoklabs.com</url>
     <inceptionYear>2016</inceptionYear>
 
@@ -58,13 +58,21 @@
 
     <dependencies>
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
+            <groupId>com.swoklabs.methodmock</groupId>
+            <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
         <!-- TESTING DEPENDENCY -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.swoklabs</groupId>
+            <artifactId>methodmock</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
