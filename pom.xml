@@ -19,6 +19,8 @@
     </issueManagement>
     <scm>
         <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
+        <connection>scm:git:git://github.com/Nosfert/methodmock.swoklabs.com.git</connection>
+        <developerConnection>scm:git:git@github.com/Nosfert/methodmock.swoklabs.com</developerConnection>
     </scm>
 
     <developers>
