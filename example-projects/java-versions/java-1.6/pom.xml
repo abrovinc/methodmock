@@ -10,7 +10,7 @@
 
     <name>java-1.6</name>
     <description>The framework parent project</description>
-    <url>http://methodmock.abrovinc.com</url>
+    <url>http://abrovinc.com</url>
 
     <licenses>
         <license>
@@ -21,7 +21,7 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/Nosfert/methodmock.abrovinc.com</url>
+        <url>https://github.com/abrovinc/methodmock</url>
     </scm>
 
     <developers>

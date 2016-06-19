@@ -15,7 +15,7 @@
 
     <name>methodmock</name>
     <description>The mocking framework</description>
-    <url>http://methodmock.abrovinc.com</url>
+    <url>http://abrovinc.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
@@ -23,7 +23,7 @@
         <url/>
     </issueManagement>
     <scm>
-        <url>https://github.com/Nosfert/methodmock.abrovinc.com</url>
+        <url>https://github.com/abrovinc/methodmock</url>
     </scm>
 
     <developers>

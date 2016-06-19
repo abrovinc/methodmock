@@ -13,15 +13,15 @@
 
     <name>MethodMock Annotation</name>
     <description>Contains the annotations needed for the methodmock implementation</description>
-    <url>http://methodmock.abrovinc.com</url>
+    <url>http://abrovinc.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
         <system>GitHub Issue Tracking</system>
-        <url>https://github.com/Nosfert/methodmock.abrovinc.com</url>
+        <url>https://github.com/abrovinc/methodmock</url>
     </issueManagement>
     <scm>
-        <url>https://github.com/Nosfert/methodmock.abrovinc.com</url>
+        <url>https://github.com/abrovinc/methodmock</url>
     </scm>
 
     <developers>

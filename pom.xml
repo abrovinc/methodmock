@@ -10,7 +10,7 @@
 
     <name>methodmock-parent</name>
     <description>The framework parent project</description>
-    <url>http://methodmock.abrovinc.com</url>
+    <url>http://abrovinc.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
@@ -18,9 +18,9 @@
         <url />
     </issueManagement>
     <scm>
-        <url>https://github.com/Nosfert/methodmock.abrovinc.com</url>
-        <connection>scm:git:git://github.com/Nosfert/methodmock.abrovinc.com.git</connection>
-        <developerConnection>scm:git:git@github.com/Nosfert/methodmock.abrovinc.com.git</developerConnection>
+        <url>https://github.com/abrovinc/methodmock</url>
+        <connection>scm:git:git://github.com/abrovinc/methodmock.git</connection>
+        <developerConnection>scm:git:git@github.com/abrovinc/methodmock.git</developerConnection>
     </scm>
 
     <developers>
