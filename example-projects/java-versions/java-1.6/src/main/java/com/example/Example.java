@@ -1,6 +1,6 @@
 package com.example;
 
-import com.swoklabs.methodmock.annotations.MockMethod;
+import com.abrovinc.methodmock.annotations.MockMethod;
 
 /**
  * Created by Steve Widinghoff on 2016-02-20.

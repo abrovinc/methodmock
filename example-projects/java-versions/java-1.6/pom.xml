@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.swoklabs.methodmock.example-projects.java-versions</groupId>
+    <groupId>com.abrovinc.methodmock.example-projects.java-versions</groupId>
     <artifactId>java-1.6</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>java-1.6</name>
     <description>The framework parent project</description>
-    <url>http://methodmock.swoklabs.com</url>
+    <url>http://methodmock.abrovinc.com</url>
 
     <licenses>
         <license>
@@ -21,15 +21,15 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
+        <url>https://github.com/Nosfert/methodmock.abrovinc.com</url>
     </scm>
 
     <developers>
         <developer>
             <name>Steve Widinghoff</name>
-            <organization>swoklabs.com</organization>
-            <email>steve at swoklabs.com</email>
-            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <organization>abrovinc.com</organization>
+            <email>steve at abrovinc.com</email>
+            <organizationUrl>http://www.abrovinc.com</organizationUrl>
         </developer>
     </developers>
 
@@ -42,7 +42,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.swoklabs.methodmock</groupId>
+            <groupId>com.abrovinc.methodmock</groupId>
             <artifactId>annotation</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -55,7 +55,7 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.swoklabs</groupId>
+            <groupId>com.abrovinc</groupId>
             <artifactId>methodmock</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>test</scope>

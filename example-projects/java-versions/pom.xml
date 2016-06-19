@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.swoklabs.methodmock.example-projects</groupId>
+    <groupId>com.abrovinc.methodmock.example-projects</groupId>
     <artifactId>java-versions</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>example-projects</name>
     <description>Java 1.6 example project</description>
-    <url>http://methodmock.swoklabs.com</url>
+    <url>http://methodmock.abrovinc.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
@@ -18,16 +18,16 @@
         <url />
     </issueManagement>
     <scm>
-        <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
+        <url>https://github.com/Nosfert/methodmock.abrovinc.com</url>
     </scm>
 
     <developers>
         <developer>
             <name>Steve Widinghoff</name>
             <id>Nosfert</id>
-            <organization>swoklabs.com</organization>
-            <email>steve at swoklabs.com</email>
-            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <organization>abrovinc.com</organization>
+            <email>steve at abrovinc.com</email>
+            <organizationUrl>http://www.abrovinc.com</organizationUrl>
             <timezone>+1</timezone>
             <roles>
                 <role>Developer</role>
@@ -36,8 +36,8 @@
         <developer>
             <name>Örjan Karlsson</name>
             <id>solzar</id>
-            <email>orjan at swoklabs.com</email>
-            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <email>orjan at abrovinc.com</email>
+            <organizationUrl>http://www.abrovinc.com</organizationUrl>
             <timezone>+1</timezone>
             <roles>
                 <role>Developer</role>

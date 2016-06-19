@@ -1,6 +1,6 @@
 <aspectj>
     <aspects>
-        <aspect name="com.swoklabs.methodmock.aspect.MockInterceptor"/>
+        <aspect name="com.abrovinc.aspect.MockInterceptor"/>
     </aspects>
     <weaver options="-verbose -showWeaveInfo">
         <exclude within="Simple"/>
