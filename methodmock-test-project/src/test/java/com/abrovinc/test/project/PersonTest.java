@@ -1,6 +1,5 @@
 package com.abrovinc.test.project;
 
-import com.abrovinc.MethodMock;
 import com.abrovinc.model.exception.MockObjectClassDifferException;
 import com.abrovinc.test.project.classes.Person;
 import com.abrovinc.test.project.classes.PersonController;
@@ -13,6 +12,7 @@ import org.junit.Test;
 
 import java.net.ConnectException;
 
+import static com.abrovinc.MethodMock.mockMethod;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -32,7 +32,7 @@ public class PersonTest extends LoadJavaAgent {
     public void testMockedDbCall() throws MockObjectClassDifferException, MethodReturnsVoidException {
         Exception ex = null;
         final Person mockPerson = new Person("Steve","Widinghoff","abc");
-        MethodMock.mockMethod("123").returns(mockPerson);
+        mockMethod("123").returns(mockPerson);
         try {
             personController.getAndPrintPerson("abc");
         } catch (ConnectException e) {

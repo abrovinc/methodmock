@@ -1,12 +1,12 @@
 package com.abrovinc.handler;
 
-import com.abrovinc.MethodMock;
 import com.abrovinc.model.exception.MethodReturnsVoidException;
 import com.abrovinc.model.exception.MockObjectClassDifferException;
 import com.abrovinc.LoadJavaAgent;
 import com.abrovinc.methodmock.annotations.MockMethod;
 import org.junit.Test;
 
+import static com.abrovinc.MethodMock.mockMethod;
 import static junit.framework.TestCase.assertEquals;
 
 /**
@@ -21,35 +21,35 @@ public class MockHandlerTest extends LoadJavaAgent{
 
         //int
         int test = 1;
-        MethodMock.mockMethod("testInt").returns(test);
+        mockMethod("testInt").returns(test);
         assertEquals(1, testInnerClass.testInt());
 
         //long
-        MethodMock.mockMethod("testLong").returns(1L);
+        mockMethod("testLong").returns(1L);
         assertEquals(1L, testInnerClass.testLong());
 
         //double
-        MethodMock.mockMethod("testDouble").returns(1D);
+        mockMethod("testDouble").returns(1D);
         assertEquals(1D, testInnerClass.testDouble());
 
         //float
-        MethodMock.mockMethod("testFloat").returns(1F);
+        mockMethod("testFloat").returns(1F);
         assertEquals(1F, testInnerClass.testFloat());
 
         //boolean
-        MethodMock.mockMethod("testBoolean").returns(true);
+        mockMethod("testBoolean").returns(true);
         assertEquals(true, testInnerClass.testBoolean());
 
         //byte
-        MethodMock.mockMethod("testByte").returns((byte) 0xe0);
+        mockMethod("testByte").returns((byte) 0xe0);
         assertEquals((byte) 0xe0, testInnerClass.testByte());
 
         //char
-        MethodMock.mockMethod("testChar").returns('b');
+        mockMethod("testChar").returns('b');
         assertEquals('b', testInnerClass.testChar());
 
         //short
-        MethodMock.mockMethod("testShort").returns((short) 1);
+        mockMethod("testShort").returns((short) 1);
         assertEquals((short) 1, testInnerClass.testShort());
     }
 

@@ -1,7 +1,6 @@
 package com.abrovinc.test.project;
 
 import com.abrovinc.LoadJavaAgent;
-import com.abrovinc.MethodMock;
 import com.abrovinc.model.exception.MethodReturnsVoidException;
 import com.abrovinc.model.exception.MockObjectClassDifferException;
 import com.abrovinc.test.project.classes.PersonController;
@@ -11,6 +10,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.net.ConnectException;
+
+import static com.abrovinc.MethodMock.mockMethod;
 
 /**
  * Created by Steve Widinghoff on 2016-02-20.
@@ -34,7 +35,7 @@ public class MockExceptionTest extends LoadJavaAgent {
     public void throwMockException() throws MockObjectClassDifferException, MethodReturnsVoidException, ConnectException {
         thrown.expect(Exception.class);
         thrown.expectMessage("Mock exception");
-        MethodMock.mockMethod("123").returns(new Exception("Mock exception"));
+        mockMethod("123").returns(new Exception("Mock exception"));
         personController.getAndPrintPerson("abc");
     }
 
@@ -42,7 +43,7 @@ public class MockExceptionTest extends LoadJavaAgent {
     public void throwMethodReturnsVoid() throws MockObjectClassDifferException, MethodReturnsVoidException, ConnectException {
         thrown.expect(MethodReturnsVoidException.class);
         thrown.expectMessage("The framework does not support methods that return void");
-        MethodMock.mockMethod("1233").returns("should failand throw exception");
+        mockMethod("1233").returns("should failand throw exception");
         personController.savePersonId("abc");
     }
 
@@ -50,7 +51,7 @@ public class MockExceptionTest extends LoadJavaAgent {
     public void throwMockObjectClassDiffer() throws MockObjectClassDifferException, MethodReturnsVoidException, ConnectException {
         thrown.expect(MockObjectClassDifferException.class);
         thrown.expectMessage("Classes differ, method expected to return a : class java.lang.Class but got : class java.lang.String");
-        MethodMock.mockMethod("123").returns("Should throw exception");
+        mockMethod("123").returns("Should throw exception");
         personController.getAndPrintPerson("abc");
     }
 

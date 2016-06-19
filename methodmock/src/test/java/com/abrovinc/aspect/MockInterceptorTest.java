@@ -8,6 +8,7 @@ import com.abrovinc.model.Use;
 import com.abrovinc.model.exception.MethodReturnsVoidException;
 import org.junit.Test;
 
+import static com.abrovinc.MethodMock.mockMethod;
 import static junit.framework.TestCase.assertEquals;
 
 /**
@@ -18,24 +19,24 @@ public class MockInterceptorTest extends LoadJavaAgent{
     @Test
     public void testMockInterceptor() throws MockObjectClassDifferException, MethodReturnsVoidException {
         TestInnerClass testInnerClass = new TestInnerClass();
-        MethodMock.mockMethod("isPublic").calls(Use.ONCE).returns(true);
+        mockMethod("isPublic").calls(Use.ONCE).returns(true);
         assertEquals(true, testInnerClass.isPublicFalse());
         assertEquals(false, testInnerClass.isPublicFalse());
 
-        MethodMock.mockMethod("isPrivate").returns(true);
+        mockMethod("isPrivate").returns(true);
         assertEquals(true, testInnerClass.isPrivateFalse());
         assertEquals(false, testInnerClass.isPrivateFalse());
 
-        MethodMock.mockMethod("isProtected").returns(true);
+        mockMethod("isProtected").returns(true);
         assertEquals(true, testInnerClass.isProtectedFalse());
         assertEquals(false, testInnerClass.isProtectedFalse());
 
-        MethodMock.mockMethod("isDefault").calls(Use.REUSE).returns(true);
+        mockMethod("isDefault").calls(Use.REUSE).returns(true);
         assertEquals(true, testInnerClass.isDefaultFalse());
         assertEquals(true, testInnerClass.isDefaultFalse());
         MethodMock.clearMock();
         assertEquals(false, testInnerClass.isDefaultFalse());
-        MethodMock.mockMethod("isDefault").returns(true);
+        mockMethod("isDefault").returns(true);
         assertEquals(true, testInnerClass.isDefaultFalse());
     }
 
