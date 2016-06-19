@@ -1,6 +1,6 @@
 package com.swoklabs.methodmock.aspect;
 
-import com.swoklabs.methodmock.annotations.MockInTest;
+import com.swoklabs.methodmock.annotations.MockMethod;
 import com.swoklabs.methodmock.handler.MockHandler;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -13,12 +13,12 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class MockInterceptor {
     private final MockHandler mockHandler = new MockHandler();
-    @Pointcut("@annotation(mockInTest)")
-    public void annotationMockInTest(MockInTest mockInTest) {
+    @Pointcut("@annotation(mockMethod)")
+    public void annotationMockInTest(MockMethod mockMethod) {
     }
 
-    @Around("annotationMockInTest(mockInTest)")
-    public Object aroundMockInTest(ProceedingJoinPoint proceedingJoinPoint, MockInTest mockInTest) throws Throwable {
-        return mockHandler.handleMockCall(proceedingJoinPoint, mockInTest.methodId());
+    @Around("annotationMockInTest(mockMethod)")
+    public Object aroundMockInTest(ProceedingJoinPoint proceedingJoinPoint, MockMethod mockMethod) throws Throwable {
+        return mockHandler.handleMockCall(proceedingJoinPoint, mockMethod.id());
     }
 }

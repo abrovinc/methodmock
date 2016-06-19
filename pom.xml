@@ -19,6 +19,8 @@
     </issueManagement>
     <scm>
         <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
+        <connection>scm:git:git://github.com/Nosfert/methodmock.swoklabs.com.git</connection>
+        <developerConnection>scm:git:git@github.com/Nosfert/methodmock.swoklabs.com.git</developerConnection>
     </scm>
 
     <developers>
@@ -39,6 +41,16 @@
             <email>orjan at swoklabs.com</email>
             <organizationUrl>http://www.swoklabs.com</organizationUrl>
             <timezone>+1</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <name>Alex Skorohod</name>
+            <id>sweetca</id>
+            <email>alexey.skorohod at gmail.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <timezone>+2</timezone>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -117,7 +129,7 @@
         </pluginManagement>
     </build>
     <modules>
-        <module>model</module>
+        <module>annotation</module>
         <module>methodmock</module>
         <module>methodmock-test-project</module>
         <module>example-projects</module>

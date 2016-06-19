@@ -1,7 +1,7 @@
 package com.swoklabs.methodmock.aspect;
 
 import com.swoklabs.methodmock.LoadJavaAgent;
-import com.swoklabs.methodmock.annotations.MockInTest;
+import com.swoklabs.methodmock.annotations.MockMethod;
 import com.swoklabs.methodmock.model.Use;
 import com.swoklabs.methodmock.model.exception.MethodReturnsVoidException;
 import com.swoklabs.methodmock.model.exception.MockObjectClassDifferException;
@@ -41,22 +41,22 @@ public class MockInterceptorTest extends LoadJavaAgent{
     }
 
     private class TestInnerClass {
-        @MockInTest(methodId = "isPublic")
+        @MockMethod(id = "isPublic")
         public boolean isPublicFalse() {
             return false;
         }
 
-        @MockInTest(methodId = "isPrivate")
+        @MockMethod(id = "isPrivate")
         private boolean isPrivateFalse() {
             return false;
         }
 
-        @MockInTest(methodId = "isProtected")
+        @MockMethod(id = "isProtected")
         protected boolean isProtectedFalse() {
             return false;
         }
 
-        @MockInTest(methodId = "isDefault")
+        @MockMethod(id = "isDefault")
         boolean isDefaultFalse() {
             return false;
         }

@@ -46,6 +46,16 @@
                 <role>Developer</role>
             </roles>
         </developer>
+        <developer>
+            <name>Alex Skorohod</name>
+            <id>sweetca</id>
+            <email>alexey.skorohod at gmail.com</email>
+            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <timezone>+2</timezone>
+            <roles>
+                <role>Developer</role>
+            </roles>
+        </developer>
     </developers>
 
     <licenses>
@@ -59,7 +69,7 @@
     <dependencies>
         <dependency>
             <groupId>com.swoklabs.methodmock</groupId>
-            <artifactId>model</artifactId>
+            <artifactId>annotation</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
