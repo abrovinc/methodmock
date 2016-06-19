@@ -3,14 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.swoklabs.methodmock</groupId>
+    <groupId>com.abrovinc.methodmock</groupId>
     <artifactId>example-projects</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>example-projects</name>
     <description>Example projects</description>
-    <url>http://methodmock.swoklabs.com</url>
+    <url>http://abrovinc.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
@@ -18,16 +18,16 @@
         <url />
     </issueManagement>
     <scm>
-        <url>https://github.com/Nosfert/methodmock.swoklabs.com</url>
+        <url>https://github.com/abrovinc/methodmock</url>
     </scm>
 
     <developers>
         <developer>
             <name>Steve Widinghoff</name>
             <id>Nosfert</id>
-            <organization>swoklabs.com</organization>
-            <email>steve at swoklabs.com</email>
-            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <organization>abrovinc.com</organization>
+            <email>steve at abrovinc.com</email>
+            <organizationUrl>http://www.abrovinc.com</organizationUrl>
             <timezone>+1</timezone>
             <roles>
                 <role>Developer</role>
@@ -36,8 +36,8 @@
         <developer>
             <name>Örjan Karlsson</name>
             <id>solzar</id>
-            <email>orjan at swoklabs.com</email>
-            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <email>orjan at abrovinc.com</email>
+            <organizationUrl>http://www.abrovinc.com</organizationUrl>
             <timezone>+1</timezone>
             <roles>
                 <role>Developer</role>
@@ -47,7 +47,7 @@
             <name>Alex Skorohod</name>
             <id>sweetca</id>
             <email>alexey.skorohod at gmail.com</email>
-            <organizationUrl>http://www.swoklabs.com</organizationUrl>
+            <organizationUrl>http://www.abrovinc.com</organizationUrl>
             <timezone>+2</timezone>
             <roles>
                 <role>Developer</role>

@@ -1,9 +1,9 @@
 package com.example;
 
-import com.swoklabs.methodmock.LoadJavaAgent;
+import com.abrovinc.LoadJavaAgent;
 import org.junit.Test;
 
-import static com.swoklabs.methodmock.MethodMock.mockMethod;
+import static com.abrovinc.MethodMock.mockMethod;
 import static org.junit.Assert.assertEquals;
 
 /**
