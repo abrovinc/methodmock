@@ -36,8 +36,8 @@
     </issueManagement>
     <scm>
         <url>https://github.com/abrovinc/methodmock</url>
-        <connection>scm:git:git://github.com/abrovinc/methodmock.git</connection>
-        <developerConnection>scm:git:git@github.com/abrovinc/methodmock.git</developerConnection>
+        <connection>scm:git:git://github.com:abrovinc/methodmock.git</connection>
+        <developerConnection>scm:git:git@github.com:abrovinc/methodmock.git</developerConnection>
     </scm>
     <licenses>
         <license>
