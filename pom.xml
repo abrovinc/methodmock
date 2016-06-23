@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2013 the original author or authors.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>com.abrovinc.methodmock</groupId>
     <artifactId>parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
 
-    <name>methodmock-parent</name>
-    <description>The framework parent project</description>
+
+    <name>MethodMock parent Pom</name>
+    <description>Java framework for mocking calls to methods</description>
     <url>http://abrovinc.com</url>
     <inceptionYear>2016</inceptionYear>
 
     <issueManagement>
         <system>GitHub Issue Tracking</system>
-        <url />
+        <url>https://github.com/abrovinc/methodmock</url>
     </issueManagement>
     <scm>
         <url>https://github.com/abrovinc/methodmock</url>
         <connection>scm:git:git://github.com/abrovinc/methodmock.git</connection>
         <developerConnection>scm:git:git@github.com/abrovinc/methodmock.git</developerConnection>
     </scm>
-
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
     <developers>
         <developer>
             <name>Steve Widinghoff</name>
@@ -45,54 +68,31 @@
                 <role>Developer</role>
             </roles>
         </developer>
-        <developer>
-            <name>Alex Skorohod</name>
-            <id>sweetca</id>
-            <email>alexey.skorohod at gmail.com</email>
-            <organizationUrl>http://www.abrovinc.com</organizationUrl>
-            <timezone>+2</timezone>
-            <roles>
-                <role>Developer</role>
-            </roles>
-        </developer>
     </developers>
 
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
     <properties>
+        <scm.branch>master</scm.branch>
         <encoding>UTF-8</encoding>
         <maven.compiler.source>1.6</maven.compiler.source>
         <target>1.6</target>
         <source>1.6</source>
         <compliance.level>1.6</compliance.level>
+        <maven-javadoc.version>2.10.4</maven-javadoc.version>
+        <maven-source.version>3.0.0</maven-source.version>
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjrt</artifactId>
-                <version>1.8.8</version>
-            </dependency>
-            <!-- TESTING DEPENDENCY -->
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>methodmock mailing-list</name>
+            <archive>http://groups.google.com/group/methodmock/topics</archive>
+        </mailingList>
+    </mailingLists>
+    <modules>
+        <module>annotation</module>
+        <module>methodmock</module>
+        <module>methodmock-test-project</module>
+        <module>example-projects</module>
+    </modules>
 
     <build>
         <pluginManagement>
@@ -128,10 +128,64 @@
             </plugins>
         </pluginManagement>
     </build>
-    <modules>
-        <module>annotation</module>
-        <module>methodmock</module>
-        <module>methodmock-test-project</module>
-        <module>example-projects</module>
-    </modules>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source.version}</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.17</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>1.8.8</version>
+            </dependency>
+            <!-- TESTING DEPENDENCY -->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
