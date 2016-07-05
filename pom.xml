@@ -14,15 +14,14 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.abrovinc.methodmock</groupId>
     <artifactId>parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
 
 
     <name>MethodMock parent Pom</name>
@@ -38,7 +37,8 @@
         <url>https://github.com/abrovinc/methodmock</url>
         <connection>scm:git:git://github.com:abrovinc/methodmock.git</connection>
         <developerConnection>scm:git:git@github.com:abrovinc/methodmock.git</developerConnection>
-    </scm>
+      <tag>HEAD</tag>
+  </scm>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
