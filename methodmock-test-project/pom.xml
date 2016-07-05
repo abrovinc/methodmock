@@ -20,7 +20,7 @@
     <parent>
         <groupId>com.abrovinc.methodmock</groupId>
         <artifactId>parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <artifactId>methodmock-test-project</artifactId>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>com.abrovinc.methodmock</groupId>
             <artifactId>annotation</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
 
         <!-- TESTING DEPENDENCY -->
@@ -44,7 +44,7 @@
         <dependency>
             <groupId>com.abrovinc</groupId>
             <artifactId>methodmock</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.abrovinc.methodmock.example-projects.java-versions</groupId>
     <artifactId>java-1.6</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>java-1.6</name>
@@ -44,7 +44,7 @@
         <dependency>
             <groupId>com.abrovinc.methodmock</groupId>
             <artifactId>annotation</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
 
         <!-- TESTING DEPENDENCY -->
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.abrovinc</groupId>
             <artifactId>methodmock</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
