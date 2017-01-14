@@ -6,13 +6,15 @@ import org.junit.Test;
 import static com.abrovinc.MethodMock.mockMethod;
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Steve Widinghoff on 2016-02-20.
- */
-public class ExampleTest extends LoadJavaAgent {
+public class ExampleTest {
 
     @Test
     public void testExample() throws Exception {
+
+        new Example();
+
+        new LoadJavaAgent();
+
         mockMethod("methodToBeMocked").returns("Mock works");
         assertEquals("Mock works",Example.methodToBeMocked());
     }
